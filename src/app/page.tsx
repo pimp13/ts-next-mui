@@ -1,69 +1,132 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
+import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
+import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
+import Link from "@/components/Link";
 
-export default function Home() {
+const features = [
+  {
+    title: "Material UI",
+    description:
+      "Production-ready components, theming, and accessibility built into every control.",
+    icon: <WidgetsRoundedIcon color="primary" />,
+  },
+  {
+    title: "App Router ready",
+    description:
+      "Emotion cache via @mui/material-nextjs so SSR styles stay in sync with Next.js 16.",
+    icon: <SpeedRoundedIcon color="primary" />,
+  },
+  {
+    title: "Design tokens",
+    description:
+      "Shared palette, typography, and shape live in one theme file you can extend.",
+    icon: <DesignServicesRoundedIcon color="primary" />,
+  },
+] as const;
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Stack spacing={5}>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: 4,
+          px: { xs: 3, md: 6 },
+          py: { xs: 5, md: 8 },
+          color: "common.white",
+          background:
+            "linear-gradient(135deg, #0F766E 0%, #0D5C56 48%, #134E4A 100%)",
+        }}
+      >
+        <Stack
+          spacing={2.5}
+          sx={{ maxWidth: 640, position: "relative", zIndex: 1 }}
+        >
+          <Chip
+            label="typescript-next-mui"
+            sx={{
+              alignSelf: "flex-start",
+              bgcolor: "rgba(255,255,255,0.16)",
+              color: "common.white",
+            }}
+          />
+          <Typography variant="h2" component="h1">
+            Funlife MUI
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ color: "rgba(255,255,255,0.86)", fontWeight: 400 }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            A Next.js App Router project styled entirely with Material UI —
+            ready for dashboards, forms, and product surfaces.
+          </Typography>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <Button
+              component={Link}
+              href="/dashboard"
+              variant="contained"
+              color="secondary"
+              endIcon={<ArrowForwardRoundedIcon />}
+              size="large"
+            >
+              Open dashboard
+            </Button>
+            <Button
+              component={Link}
+              href="/components"
+              variant="outlined"
+              size="large"
+              sx={{
+                borderColor: "rgba(255,255,255,0.5)",
+                color: "common.white",
+                "&:hover": {
+                  borderColor: "common.white",
+                  bgcolor: "rgba(255,255,255,0.08)",
+                },
+              }}
+            >
+              Browse components
+            </Button>
+          </Stack>
+        </Stack>
+      </Box>
+
+      <Grid container spacing={2.5}>
+        {features.map((feature) => (
+          <Grid key={feature.title} size={{ xs: 12, md: 4 }}>
+            <Card variant="outlined" sx={{ height: "100%" }}>
+              <CardContent>
+                <Stack spacing={1.5}>
+                  {feature.icon}
+                  <Typography variant="h6">{feature.title}</Typography>
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    {feature.description}
+                  </Typography>
+                </Stack>
+              </CardContent>
+              <CardActions sx={{ px: 2, pb: 2 }}>
+                <Button component={Link} href="/components" size="small">
+                  Explore
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Stack>
   );
 }
