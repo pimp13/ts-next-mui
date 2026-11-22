@@ -12,7 +12,7 @@ type ThemeRegistryProps = {
 
 export function ThemeRegistry({ children }: ThemeRegistryProps) {
   return (
-    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+    <AppRouterCacheProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}

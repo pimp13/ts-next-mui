@@ -34,7 +34,8 @@ export default function ComponentsPage() {
         component overrides there.
       </Alert>
 
-      <TextField label="Full name" placeholder="Your name" fullWidth />
+      <TextField label="Full name" placeholder="Your name" type="text" fullWidth style={{ width: '50%' }} size="small" />
+      <TextField label="Full name" placeholder="Your name" type="text" fullWidth />
       <TextField
         select
         label="Role"
