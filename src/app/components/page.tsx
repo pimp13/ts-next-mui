@@ -16,6 +16,15 @@ import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 export default function ComponentsPage() {
   const [enabled, setEnabled] = useState(true);
   const [role, setRole] = useState("editor");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    notes: "",
+  });
+  const [remember, setRemember] = useState(false);
+  const handleSave = () => {
+    console.log(formData, role, remember);
+  }
 
   return (
     <Stack spacing={3} sx={{ maxWidth: 560 }}>
@@ -34,8 +43,12 @@ export default function ComponentsPage() {
         component overrides there.
       </Alert>
 
-      <TextField label="Full name" placeholder="Your name" type="text" fullWidth style={{ width: '50%' }} size="small" />
-      <TextField label="Full name" placeholder="Your name" type="text" fullWidth />
+      <TextField label="Full name" placeholder="Your name" type="text" fullWidth size="small"
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+      <TextField label="Email" placeholder="Your email" type="email" fullWidth size="small"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
       <TextField
         select
         label="Role"
@@ -53,6 +66,8 @@ export default function ComponentsPage() {
         multiline
         minRows={3}
         fullWidth
+        value={formData.notes}
+        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
       />
 
       <FormControlLabel
@@ -65,16 +80,21 @@ export default function ComponentsPage() {
         label="Email notifications"
       />
       <FormControlLabel
-        control={<Checkbox defaultChecked />}
+        control={
+          <Checkbox
+            checked={remember}
+            onChange={(event) => setRemember(event.target.checked)}
+          />
+        }
         label="Remember me"
       />
 
       <Stack direction="row" spacing={1.5}>
-        <Button variant="contained" startIcon={<SaveRoundedIcon />}>
+        <Button onClick={handleSave} variant="contained" startIcon={<SaveRoundedIcon />}>
           Save changes
         </Button>
-        <Button variant="outlined">Cancel</Button>
-        <Button variant="text" color="secondary">
+        <Button variant="outlined" onClick={() => setFormData({ name: "", email: "", notes: "" })}>Cancel</Button>
+        <Button variant="text" color="secondary" onClick={() => setFormData({ name: "", email: "", notes: "" })}>
           Reset
         </Button>
       </Stack>
