@@ -26,7 +26,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
   { href: "/components", label: "Components", icon: <WidgetsRoundedIcon /> },
   { href: "/user", label: "User", icon: <PersonIcon /> },
-  { href: "/article", label: "Article", icon: <DescriptionIcon /> },
+  { href: "/articles", label: "Articles", icon: <DescriptionIcon /> },
 ] as const;
 
 type AppShellProps = {
