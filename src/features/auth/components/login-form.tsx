@@ -36,8 +36,8 @@ export function LoginForm() {
         bgcolor: "background.default",
         backgroundImage: (theme) =>
           theme.palette.mode === "dark"
-            ? "radial-gradient(circle at top left, rgba(45,212,191,0.14), transparent 42%)"
-            : "radial-gradient(circle at top left, rgba(15,118,110,0.16), transparent 40%)",
+            ? "radial-gradient(circle at top left, rgba(77,163,255,0.18), transparent 44%)"
+            : "radial-gradient(circle at top left, rgba(11,107,203,0.12), transparent 42%)",
       }}
     >
       <Box sx={{ position: "absolute", top: 16, right: 16 }}>

@@ -46,7 +46,7 @@ export default function HomePage() {
           py: { xs: 5, md: 8 },
           color: "common.white",
           background:
-            "linear-gradient(135deg, #0F766E 0%, #0D5C56 48%, #134E4A 100%)",
+            "radial-gradient(circle at 20% 20%, rgba(77,163,255,0.35), transparent 42%), linear-gradient(145deg, #0A0F18 0%, #121A27 48%, #0B6BCB 140%)",
         }}
       >
         <Stack
@@ -57,7 +57,7 @@ export default function HomePage() {
             label="typescript-next-mui"
             sx={{
               alignSelf: "flex-start",
-              bgcolor: "rgba(255,255,255,0.16)",
+              bgcolor: "rgba(255,255,255,0.12)",
               color: "common.white",
             }}
           />
@@ -66,22 +66,23 @@ export default function HomePage() {
           </Typography>
           <Typography
             variant="h6"
-            sx={{ color: "rgba(255,255,255,0.86)", fontWeight: 400 }}
+            sx={{ color: "rgba(255,255,255,0.78)", fontWeight: 400 }}
           >
             Material UI admin starter with React Hook Form, React Query, and
             the Go API on port 8080.
           </Typography>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-          >
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
               component={Link}
               href="/login"
               variant="contained"
-              color="secondary"
               endIcon={<ArrowForwardRoundedIcon />}
               size="large"
+              sx={{
+                bgcolor: "#FFFFFF",
+                color: "#0A0F18",
+                "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
+              }}
             >
               Sign in to dashboard
             </Button>
@@ -91,7 +92,7 @@ export default function HomePage() {
               variant="outlined"
               size="large"
               sx={{
-                borderColor: "rgba(255,255,255,0.5)",
+                borderColor: "rgba(255,255,255,0.4)",
                 color: "common.white",
                 "&:hover": {
                   borderColor: "common.white",
