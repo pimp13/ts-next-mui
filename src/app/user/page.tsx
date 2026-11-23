@@ -187,10 +187,10 @@ interface ActionHandlers {
 }
 
 const ActionHandlersContext = React.createContext<ActionHandlers>({
-  handleCancelClick: () => {},
-  handleDeleteClick: () => {},
-  handleEditClick: () => {},
-  handleSaveClick: () => {},
+  handleCancelClick: () => { },
+  handleDeleteClick: () => { },
+  handleEditClick: () => { },
+  handleSaveClick: () => { },
 });
 
 function ActionsCell(props: GridRenderCellParams) {
