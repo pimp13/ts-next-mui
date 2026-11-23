@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { AppShell } from "@/components/AppShell";
-import { ThemeRegistry } from "@/components/ThemeRegistry";
+import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -15,16 +14,18 @@ export const metadata: Metadata = {
     default: "Funlife MUI",
     template: "%s · Funlife MUI",
   },
-  description: "Next.js App Router starter with Material UI",
+  description: "Next.js + Material UI + React Query dashboard",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <ThemeRegistry>
-          <AppShell>{children}</AppShell>
-        </ThemeRegistry>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

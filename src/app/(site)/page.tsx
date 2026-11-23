@@ -68,8 +68,8 @@ export default function HomePage() {
             variant="h6"
             sx={{ color: "rgba(255,255,255,0.86)", fontWeight: 400 }}
           >
-            A Next.js App Router project styled entirely with Material UI —
-            ready for dashboards, forms, and product surfaces.
+            Material UI admin starter with React Hook Form, React Query, and
+            the Go API on port 8080.
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -77,13 +77,13 @@ export default function HomePage() {
           >
             <Button
               component={Link}
-              href="/dashboard"
+              href="/login"
               variant="contained"
               color="secondary"
               endIcon={<ArrowForwardRoundedIcon />}
               size="large"
             >
-              Open dashboard
+              Sign in to dashboard
             </Button>
             <Button
               component={Link}

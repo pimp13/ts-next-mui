@@ -15,18 +15,16 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import Link from "@/components/Link";
-import PersonIcon from '@mui/icons-material/Person';
-import DescriptionIcon from '@mui/icons-material/Description';
 
 const navItems = [
   { href: "/", label: "Home", icon: <HomeRoundedIcon /> },
   { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
   { href: "/components", label: "Components", icon: <WidgetsRoundedIcon /> },
-  { href: "/user", label: "User", icon: <PersonIcon /> },
-  { href: "/articles", label: "Articles", icon: <DescriptionIcon /> },
+  { href: "/login", label: "Sign in", icon: <LoginRoundedIcon /> },
 ] as const;
 
 type AppShellProps = {
@@ -37,9 +35,7 @@ export function AppShell({ children }: AppShellProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box
-      sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
-    >
+    <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <AppBar position="sticky">
         <Toolbar sx={{ gap: 1 }}>
           <IconButton
@@ -122,7 +118,7 @@ export function AppShell({ children }: AppShellProps) {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Funlife MUI · Next.js + Material UI starter
+            Funlife MUI · React Hook Form + React Query + Go API
           </Typography>
         </Container>
       </Box>

@@ -1,27 +1,47 @@
 # typescript-next-mui
 
-Next.js App Router starter styled with **Material UI (MUI)**.
+Next.js + Material UI admin starter with the same feature-oriented structure as `typescript-next`.
 
 ## Stack
 
-- Next.js 16 + React 19 + TypeScript
-- `@mui/material` + `@mui/icons-material`
-- `@mui/material-nextjs` App Router cache provider
-- Emotion (`@emotion/react`, `@emotion/styled`, `@emotion/cache`)
+- Next.js 16 App Router
+- Material UI 9
+- React Hook Form + Zod
+- TanStack React Query
+- Go API (`http://localhost:8080/api`)
 
-## Scripts
+## Run
 
 ```bash
-pnpm dev      # http://localhost:3002
-pnpm build
-pnpm start
-pnpm lint
+pnpm dev   # http://localhost:3002
 ```
+
+Make sure the Go API is running on `:8080`, then sign in at `/login`.
 
 ## Structure
 
-- `src/theme.ts` — MUI theme (palette, typography, component defaults)
-- `src/components/ThemeRegistry.tsx` — Emotion cache + ThemeProvider + CssBaseline
-- `src/components/AppShell.tsx` — AppBar / Drawer shell
-- `src/components/Link.tsx` — Next.js Link wrapper for MUI `component={Link}`
-- `src/app/` — routes (`/`, `/dashboard`, `/components`)
+```
+src/
+  lib/                 # goApiFetch, query client/keys
+  features/
+    auth/              # login, session hooks
+    users/             # users API + RHF dialogs + DataGrid
+    articles/          # articles API + RHF dialogs + DataGrid
+    dashboard/         # overview cards
+  components/
+    providers/         # Theme + Query + Snackbar
+    dashboard/         # DashboardShell
+  app/
+    (site)/            # marketing shell
+    (auth)/login
+    (dashboard)/dashboard/{,users,articles}
+```
+
+## Key routes
+
+| Route | Purpose |
+| --- | --- |
+| `/login` | Cookie auth against Go `/auth/login` |
+| `/dashboard` | Live counts via React Query |
+| `/dashboard/users` | Users CRUD |
+| `/dashboard/articles` | Articles CRUD |
