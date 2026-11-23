@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 
@@ -23,8 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.className}>
+    <html lang="en" className={roboto.className} suppressHydrationWarning>
       <body>
+        <InitColorSchemeScript
+          attribute="data-mui-color-scheme"
+          defaultMode="system"
+          modeStorageKey="funlife-mui-mode"
+        />
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

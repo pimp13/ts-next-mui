@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useLogin } from "@/features/auth/hooks/use-auth";
 import {
   loginSchema,
@@ -27,14 +28,21 @@ export function LoginForm() {
   return (
     <Box
       sx={{
+        position: "relative",
         minHeight: "100vh",
         display: "grid",
         placeItems: "center",
         px: 2,
-        background:
-          "radial-gradient(circle at top left, rgba(15,118,110,0.16), transparent 40%), linear-gradient(180deg, #F4F7F6, #E8EFEC)",
+        bgcolor: "background.default",
+        backgroundImage: (theme) =>
+          theme.palette.mode === "dark"
+            ? "radial-gradient(circle at top left, rgba(45,212,191,0.14), transparent 42%)"
+            : "radial-gradient(circle at top left, rgba(15,118,110,0.16), transparent 40%)",
       }}
     >
+      <Box sx={{ position: "absolute", top: 16, right: 16 }}>
+        <ThemeToggle />
+      </Box>
       <Card sx={{ width: "100%", maxWidth: 420 }} variant="outlined">
         <CardContent sx={{ p: 3 }}>
           <Typography variant="h5" sx={{ fontWeight: 700 }}>

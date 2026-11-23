@@ -20,6 +20,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import Link from "@/components/Link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useCurrentUser, useLogout } from "@/features/auth/hooks/use-auth";
 
 const DRAWER_WIDTH = 260;
@@ -137,7 +138,7 @@ export function DashboardShell({
           >
             <MenuRoundedIcon />
           </IconButton>
-          <Box sx={{ minWidth: 0 }}>
+          <Box sx={{ minWidth: 0, flex: 1 }}>
             <Typography variant="h6" noWrap sx={{ fontWeight: 700 }}>
               {title}
             </Typography>
@@ -147,6 +148,7 @@ export function DashboardShell({
               </Typography>
             ) : null}
           </Box>
+          <ThemeToggle />
         </Toolbar>
       </AppBar>
 

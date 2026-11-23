@@ -19,6 +19,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import Link from "@/components/Link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
   { href: "/", label: "Home", icon: <HomeRoundedIcon /> },
@@ -74,6 +75,7 @@ export function AppShell({ children }: AppShellProps) {
               </Button>
             ))}
           </Box>
+          <ThemeToggle />
         </Toolbar>
       </AppBar>
 

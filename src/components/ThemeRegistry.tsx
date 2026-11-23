@@ -13,8 +13,8 @@ type ThemeRegistryProps = {
 export function ThemeRegistry({ children }: ThemeRegistryProps) {
   return (
     <AppRouterCacheProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      <ThemeProvider theme={theme} defaultMode="system" modeStorageKey="funlife-mui-mode">
+        <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
     </AppRouterCacheProvider>
