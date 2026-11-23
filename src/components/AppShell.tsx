@@ -18,11 +18,15 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import Link from "@/components/Link";
+import PersonIcon from '@mui/icons-material/Person';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const navItems = [
   { href: "/", label: "Home", icon: <HomeRoundedIcon /> },
   { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
   { href: "/components", label: "Components", icon: <WidgetsRoundedIcon /> },
+  { href: "/user", label: "User", icon: <PersonIcon /> },
+  { href: "/article", label: "Article", icon: <DescriptionIcon /> },
 ] as const;
 
 type AppShellProps = {
