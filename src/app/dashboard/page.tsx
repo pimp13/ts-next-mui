@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+'use client';
+
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -10,9 +11,6 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-};
 
 const stats = [
   { label: "Active users", value: "1,284", change: "+12%", progress: 72 },
@@ -27,6 +25,8 @@ const activity = [
 ] as const;
 
 export default function DashboardPage() {
+  const themeStorage = localStorage.getItem('theme');
+  console.log(themeStorage);
   return (
     <Stack spacing={3}>
       <Box>
@@ -36,6 +36,36 @@ export default function DashboardPage() {
         <Typography sx={{ color: "text.secondary" }}>
           Sample Material UI dashboard cards and activity list.
         </Typography>
+
+        <Box
+          sx={{
+            backgroundColor: {
+              xs: "primary.main",
+              md: 'secondary.main'
+            },
+            color: "white",
+            padding: 2,
+            borderRadius: 2,
+
+            "&:hover": {
+              backgroundColor: "primary.dark",
+              cursor: "pointer",
+            },
+
+            "&:focus": {
+              outline: "2px solid blue",
+              border: "2px solid primary.dark"
+            },
+
+            "&:active": {
+              backgroundColor: "primary.light",
+            },
+
+
+          }}
+        >
+          Hover Me
+        </Box>
       </Box>
 
       <Grid container spacing={2.5}>
@@ -71,7 +101,7 @@ export default function DashboardPage() {
         ))}
       </Grid>
 
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{ grid: { xs: 10 } }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
             Recent activity
