@@ -19,13 +19,14 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import Link from "@/components/Link";
+import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useCurrentUser } from "@/features/auth/hooks/use-auth";
 
 const navItems = [
   { href: "/", label: "Home", icon: <HomeRoundedIcon /> },
   { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
   { href: "/components", label: "Components", icon: <WidgetsRoundedIcon /> },
-  { href: "/login", label: "Sign in", icon: <LoginRoundedIcon /> },
 ] as const;
 
 type AppShellProps = {
@@ -34,6 +35,7 @@ type AppShellProps = {
 
 export function AppShell({ children }: AppShellProps) {
   const [open, setOpen] = useState(false);
+  const { data: user } = useCurrentUser();
 
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -63,7 +65,7 @@ export function AppShell({ children }: AppShellProps) {
             Funlife MUI
           </Typography>
 
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
             {navItems.map((item) => (
               <Button
                 key={item.href}
@@ -74,8 +76,20 @@ export function AppShell({ children }: AppShellProps) {
                 {item.label}
               </Button>
             ))}
+            {user ? (
+              <LogoutButton />
+            ) : (
+              <Button component={Link} href="/login" color="inherit" startIcon={<LoginRoundedIcon />}>
+                Sign in
+              </Button>
+            )}
           </Box>
           <ThemeToggle />
+          {user ? (
+            <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
+              <LogoutButton variant="icon" />
+            </Box>
+          ) : null}
         </Toolbar>
       </AppBar>
 
@@ -102,7 +116,24 @@ export function AppShell({ children }: AppShellProps) {
               <ListItemText primary={item.label} />
             </ListItemButton>
           ))}
+          {!user ? (
+            <ListItemButton
+              component={Link}
+              href="/login"
+              onClick={() => setOpen(false)}
+            >
+              <ListItemIcon>
+                <LoginRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign in" />
+            </ListItemButton>
+          ) : null}
         </List>
+        {user ? (
+          <Box sx={{ p: 2 }}>
+            <LogoutButton variant="fullWidth" />
+          </Box>
+        ) : null}
       </Drawer>
 
       <Box component="main" sx={{ flex: 1, py: { xs: 3, md: 5 } }}>

@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -16,12 +15,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import Link from "@/components/Link";
+import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useCurrentUser, useLogout } from "@/features/auth/hooks/use-auth";
+import { useCurrentUser } from "@/features/auth/hooks/use-auth";
 
 const DRAWER_WIDTH = 260;
 
@@ -55,10 +54,8 @@ export function DashboardShell({
   children,
 }: DashboardShellProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { data: user } = useCurrentUser();
-  const logoutMutation = useLogout();
 
   const drawer = (
     <Box sx={{ display: "flex", height: "100%", flexDirection: "column" }}>
@@ -102,20 +99,9 @@ export function DashboardShell({
         <Typography variant="caption" sx={{ color: "text.secondary" }}>
           {user?.email ?? "Sign in to manage the workspace"}
         </Typography>
-        <Button
-          fullWidth
-          sx={{ mt: 1.5 }}
-          variant="outlined"
-          startIcon={<LogoutRoundedIcon />}
-          disabled={!user || logoutMutation.isPending}
-          onClick={() => {
-            logoutMutation.mutate(undefined, {
-              onSuccess: () => router.push("/login"),
-            });
-          }}
-        >
-          Sign out
-        </Button>
+        <Box sx={{ mt: 1.5 }}>
+          <LogoutButton variant="fullWidth" />
+        </Box>
       </Box>
     </Box>
   );
@@ -149,6 +135,7 @@ export function DashboardShell({
             ) : null}
           </Box>
           <ThemeToggle />
+          <LogoutButton variant="icon" />
         </Toolbar>
       </AppBar>
 
