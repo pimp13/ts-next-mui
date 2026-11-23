@@ -174,7 +174,7 @@ export function UsersManagement() {
         </TextField>
       </Stack>
 
-      <Box sx={{ height: 520, width: "100%" }}>
+      <Box sx={{ height: 600, width: "100%" }}>
         <DataGrid
           rows={usersQuery.data ?? []}
           columns={columns}
