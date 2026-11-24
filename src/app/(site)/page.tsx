@@ -21,6 +21,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import { GridExpandMoreIcon } from "@mui/x-data-grid";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
+import { useSnackbar } from "notistack";
+
 
 const features = [
   {
@@ -48,6 +50,8 @@ export default function HomePage() {
   const id = useId();
 
   const fakeAvatarImg = 'https://img.magnific.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid&w=740&q=80';
+
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
     <Stack spacing={5}>
@@ -340,6 +344,38 @@ export default function HomePage() {
           borderRadius: 2,
         }}
       />
+
+      <Divider />
+
+
+      <Grid container spacing={2.5}>
+        {Array.from({ length: 10 }).map((_, i) => (
+          <Grid key={i} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+            <Card>
+              <CardActionArea onClick={() => {
+                enqueueSnackbar("پیام شما", { variant: "success" });
+              }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h2" sx={{ fontSize: '1.2rem', fontWeight: 400 }} component="div">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفادون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز...
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+
 
     </Stack>
   );
