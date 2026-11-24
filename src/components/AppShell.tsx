@@ -22,6 +22,7 @@ import Link from "@/components/Link";
 import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useCurrentUser } from "@/features/auth/hooks/use-auth";
+import { grey } from "@mui/material/colors";
 
 const navItems = [
   { href: "/", label: "خانه", icon: <HomeRoundedIcon /> },
@@ -39,7 +40,13 @@ export function AppShell({ children }: AppShellProps) {
 
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <AppBar position="sticky">
+      <AppBar
+        position="sticky"
+        sx={[
+          { borderBottom: '1px solid', borderColor: 'red', boxShadow: 1 },
+          (theme) => theme.applyStyles('dark', { borderColor: grey[600] })
+        ]}
+      >
         <Toolbar sx={{ gap: 1 }}>
           <IconButton
             edge="start"

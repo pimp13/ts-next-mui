@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Box from "@mui/material/Box";
@@ -17,8 +17,16 @@ import {
   type LoginFormValues,
 } from "@/features/auth/schemas";
 
+function safeNextPath(value: string | null) {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+    return "/dashboard";
+  }
+  return value;
+}
+
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const loginMutation = useLogin();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -57,7 +65,8 @@ export function LoginForm() {
             spacing={2}
             onSubmit={form.handleSubmit((values) => {
               loginMutation.mutate(values, {
-                onSuccess: () => router.push("/dashboard"),
+                onSuccess: () =>
+                  router.push(safeNextPath(searchParams.get("next"))),
               });
             })}
           >

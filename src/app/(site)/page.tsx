@@ -15,7 +15,7 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
 import Link from '@mui/material/Link';
 import NextLink from '@/components/Link';
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Alert, Avatar, Divider, Paper, Rating, Skeleton } from "@mui/material";
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Alert, Avatar, CardActionArea, CardMedia, Divider, Paper, Rating, Skeleton } from "@mui/material";
 import { useId, useState } from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import { GridExpandMoreIcon } from "@mui/x-data-grid";
@@ -148,14 +148,31 @@ export default function HomePage() {
       {/* Grid Example */}
       <Grid container spacing={2.5}>
         {Array.from({ length: 6 }).map((_, i) => (
-          <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
-            <Paper elevation={1} sx={{ p: 2 }}>
-              <Typography>
-                <Link href="/dashboard" component={NextLink}>
-                  عنوان {i + 1}
-                </Link>
-              </Typography>
-            </Paper>
+          <Grid key={i} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
+            <Card sx={{ maxWidth: 345 }}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Lizard
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Lizards are a widespread group of squamate reptiles, with over 6,000
+                    species, ranging across all continents except Antarctica
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+              </CardActions>
+            </Card>
           </Grid>
         ))}
       </Grid>
@@ -289,8 +306,6 @@ export default function HomePage() {
 
 
       <Divider />
-
-
 
     </Stack>
   );
