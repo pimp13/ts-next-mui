@@ -1,3 +1,5 @@
+'use client';
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -11,7 +13,13 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
-import Link from "@/components/Link";
+import Link from '@mui/material/Link';
+import NextLink from '@/components/Link';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Alert, Avatar, Divider, Paper, Rating, Skeleton } from "@mui/material";
+import { useId, useState } from "react";
+import CheckIcon from '@mui/icons-material/Check';
+import { GridExpandMoreIcon } from "@mui/x-data-grid";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const features = [
   {
@@ -35,6 +43,11 @@ const features = [
 ] as const;
 
 export default function HomePage() {
+  const [value, setValue] = useState<number | null>(2);
+  const id = useId();
+
+  const fakeAvatarImg = 'https://img.magnific.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid&w=740&q=80';
+
   return (
     <Stack spacing={5}>
       <Box
@@ -128,6 +141,157 @@ export default function HomePage() {
           </Grid>
         ))}
       </Grid>
+
+      <Divider />
+
+
+      {/* Grid Example */}
+      <Grid container spacing={2.5}>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
+            <Paper elevation={1} sx={{ p: 2 }}>
+              <Typography>
+                <Link href="/dashboard" component={NextLink}>
+                  عنوان {i + 1}
+                </Link>
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Divider />
+
+      {/* Rating Example */}
+      <Box sx={{ '& > legend': { mt: 2 } }}>
+        <Typography component="legend">Controlled</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+        <Typography component="legend">Uncontrolled</Typography>
+        <Rating
+          name="simple-uncontrolled"
+          onChange={(event, newValue) => {
+            console.log(newValue);
+          }}
+          defaultValue={2}
+        />
+        <Typography component="legend">Read only</Typography>
+        <Rating name="read-only" value={value} readOnly />
+        <Typography component="legend">Disabled</Typography>
+        <Rating name="disabled" value={value} disabled />
+        <Typography component="legend">No rating given</Typography>
+        <Rating name="no-value" value={null} />
+      </Box>
+
+      <Divider />
+
+      <Avatar alt="Remy Sharp" src={fakeAvatarImg} />
+
+      <Divider />
+
+      <Stack direction="row" spacing={1}>
+        <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
+        <Chip
+          avatar={<Avatar alt="Natacha" src={fakeAvatarImg} />}
+          label="Avatar"
+          variant="outlined"
+        />
+
+        <Chip label="Deletable" onDelete={() => { }} />
+      </Stack>
+
+      <Divider />
+
+
+      <Stack direction="column" spacing={2}>
+        <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+          Here is a gentle confirmation that your action was successful.
+        </Alert>
+        <Alert icon={<CheckIcon fontSize="inherit" />} severity="error">
+          Here is a gentle confirmation that your action was successful.
+        </Alert>
+      </Stack>
+
+
+      <Divider />
+
+      <Stack spacing={1}>
+        {/* For variant="text", adjust the height via font-size */}
+        <Skeleton variant="text" animation="wave" sx={{ fontSize: '1rem' }} width={210} />
+
+        {/* For other variants, adjust the size with `width` and `height` */}
+        <Skeleton variant="circular" width={40} height={40} />
+        <Skeleton variant="rectangular" width={210} height={60} />
+        <Skeleton variant="rounded" width={210} height={60} />
+
+
+        <Box sx={{ width: 300 }}>
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </Box>
+      </Stack>
+
+
+
+      <Divider />
+
+      <Box>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<GridExpandMoreIcon />}
+            aria-controls={`${id}-panel1-content`}
+            id={`${id}-panel1-header`}
+          >
+            <Typography component="span">Accordion 1</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`${id}-panel2-content`}
+            id={`${id}-panel2-header`}
+          >
+            <Typography component="span">Accordion 2</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion defaultExpanded>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`${id}-panel3-content`}
+            id={`${id}-panel3-header`}
+          >
+            <Typography component="span">Accordion Actions</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+          <AccordionActions>
+            <Button>Cancel</Button>
+            <Button>Agree</Button>
+          </AccordionActions>
+        </Accordion>
+      </Box>
+
+
+      <Divider />
+
+
+
     </Stack>
   );
 }
