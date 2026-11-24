@@ -15,6 +15,17 @@ export type LoginInput = {
   password: string;
 };
 
+export type FastifyAuthUser = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+  lastLogin?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
 export type GoAuthUser = {
   id: string;
   first_name: string;
@@ -31,20 +42,55 @@ export type GoSession = {
   user: GoAuthUser;
 };
 
-export function mapGoAuthUser(user: GoAuthUser): User {
-  const name = [user.first_name, user.last_name].filter(Boolean).join(" ").trim();
+function isGoSession(raw: unknown): raw is GoSession {
+  return Boolean(
+    raw &&
+      typeof raw === "object" &&
+      "user" in raw &&
+      (raw as GoSession).user,
+  );
+}
+
+function isGoAuthUser(raw: unknown): raw is GoAuthUser {
+  return Boolean(
+    raw && typeof raw === "object" && "first_name" in raw && "email" in raw,
+  );
+}
+
+export function mapAuthUser(
+  raw: FastifyAuthUser | GoAuthUser | GoSession,
+): User {
+  if (isGoSession(raw)) {
+    return mapAuthUser(raw.user);
+  }
+
+  if (isGoAuthUser(raw)) {
+    const name = [raw.first_name, raw.last_name].filter(Boolean).join(" ").trim();
+    return {
+      id: raw.id,
+      name: name || raw.username || raw.email,
+      email: raw.email,
+      roleSlug: raw.role,
+      permissions: raw.permissions ?? [],
+      status: raw.status,
+      firstName: raw.first_name,
+      lastName: raw.last_name,
+      username: raw.username,
+    };
+  }
+
   return {
-    id: user.id,
-    name: name || user.username || user.email,
-    email: user.email,
-    roleSlug: user.role,
-    permissions: user.permissions ?? [],
-    status: user.status,
-    firstName: user.first_name,
-    lastName: user.last_name,
-    username: user.username,
+    id: raw.id,
+    name: raw.name,
+    email: raw.email,
+    roleSlug: raw.role,
+    permissions: [],
+    status: raw.isActive ? "active" : "inactive",
   };
 }
+
+/** @deprecated use mapAuthUser */
+export const mapGoAuthUser = mapAuthUser;
 
 export function hasPermission(user: User | null | undefined, code: string) {
   return Boolean(user?.permissions?.includes(code));

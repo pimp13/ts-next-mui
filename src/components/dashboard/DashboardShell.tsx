@@ -13,10 +13,16 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
+import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
+import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
+import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded";
+import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import MeetingRoomRoundedIcon from "@mui/icons-material/MeetingRoomRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import PaymentsRoundedIcon from "@mui/icons-material/PaymentsRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import Link from "@/components/Link";
 import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -27,18 +33,48 @@ const DRAWER_WIDTH = 260;
 const navItems = [
   {
     href: "/dashboard",
-    label: "نمای کلی",
+    label: "داشبورد",
     icon: <DashboardRoundedIcon />,
   },
   {
-    href: "/dashboard/users",
-    label: "کاربران",
+    href: "/dashboard/buildings",
+    label: "ساختمان‌ها",
+    icon: <ApartmentRoundedIcon />,
+  },
+  {
+    href: "/dashboard/units",
+    label: "واحدها",
+    icon: <MeetingRoomRoundedIcon />,
+  },
+  {
+    href: "/dashboard/residents",
+    label: "ساکنین",
     icon: <PeopleRoundedIcon />,
   },
   {
-    href: "/dashboard/articles",
-    label: "مقالات",
-    icon: <ArticleRoundedIcon />,
+    href: "/dashboard/charges",
+    label: "شارژ و صورتحساب",
+    icon: <ReceiptLongRoundedIcon />,
+  },
+  {
+    href: "/dashboard/payments",
+    label: "پرداخت‌ها",
+    icon: <PaymentsRoundedIcon />,
+  },
+  {
+    href: "/dashboard/expenses",
+    label: "هزینه‌ها و صندوق",
+    icon: <AccountBalanceWalletRoundedIcon />,
+  },
+  {
+    href: "/dashboard/tickets",
+    label: "درخواست‌ها",
+    icon: <ConstructionRoundedIcon />,
+  },
+  {
+    href: "/dashboard/announcements",
+    label: "اعلان‌ها",
+    icon: <CampaignRoundedIcon />,
   },
 ] as const;
 
@@ -66,7 +102,7 @@ export function DashboardShell({
           variant="h6"
           sx={{ fontWeight: 700, color: "inherit", textDecoration: "none" }}
         >
-          پنل فان‌لایف
+          مدیریت ساختمان
         </Typography>
       </Toolbar>
       <Divider />
@@ -145,8 +181,6 @@ export function DashboardShell({
       >
         <Drawer
           variant="temporary"
-          // With stylis-plugin-rtl, left/right CSS is flipped — use "left"
-          // so the paper ends up on the physical right.
           anchor="left"
           open={mobileOpen}
           onClose={() => setMobileOpen(false)}

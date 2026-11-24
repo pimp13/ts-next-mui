@@ -1,6 +1,7 @@
-import { goApiFetch, type ApiResponse } from "@/lib/api";
+import { apiFetch, type ApiResponse } from "@/lib/api";
 import {
-  mapGoAuthUser,
+  mapAuthUser,
+  type FastifyAuthUser,
   type GoAuthUser,
   type GoSession,
   type LoginInput,
@@ -8,20 +9,15 @@ import {
 } from "@/features/auth/types";
 
 function asUserResponse(
-  payload: ApiResponse<GoAuthUser | GoSession>,
+  payload: ApiResponse<FastifyAuthUser | GoAuthUser | GoSession>,
 ): ApiResponse<User> {
   const raw = payload.data;
   if (!raw) return { ...payload, data: undefined };
-
-  if ("user" in raw && raw.user) {
-    return { ...payload, data: mapGoAuthUser(raw.user) };
-  }
-
-  return { ...payload, data: mapGoAuthUser(raw as GoAuthUser) };
+  return { ...payload, data: mapAuthUser(raw) };
 }
 
 export async function login(input: LoginInput) {
-  const response = await goApiFetch<GoSession>("/auth/login", {
+  const response = await apiFetch<FastifyAuthUser | GoSession>("/auth/login", {
     method: "POST",
     body: JSON.stringify(input),
   });
@@ -29,13 +25,13 @@ export async function login(input: LoginInput) {
 }
 
 export function logout() {
-  return goApiFetch<{ message: string }>("/auth/logout", {
+  return apiFetch<{ message: string }>("/auth/logout", {
     method: "POST",
   });
 }
 
 export async function getMe() {
-  const response = await goApiFetch<GoAuthUser>("/auth/me", {
+  const response = await apiFetch<FastifyAuthUser | GoAuthUser>("/auth/me", {
     method: "GET",
   });
   return asUserResponse(response);

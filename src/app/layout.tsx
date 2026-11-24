@@ -13,11 +13,11 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
   title: {
-    default: "فان‌لایف MUI",
-    template: "%s · فان‌لایف MUI",
+    default: "مدیریت ساختمان",
+    template: "%s · مدیریت ساختمان",
   },
-  description: "داشبورد Next.js + Material UI + React Query",
-};
+  description: "سامانه مدیریت ساختمان مسکونی",
+}
 
 export default function RootLayout({
   children,

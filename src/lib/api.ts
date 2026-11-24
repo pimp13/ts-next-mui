@@ -1,9 +1,16 @@
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api";
+
+/** @deprecated use API_URL — kept for older Go-oriented env names */
 export const GO_API_URL =
-  process.env.NEXT_PUBLIC_GO_API_URL ?? "http://localhost:8080/api";
+  process.env.NEXT_PUBLIC_GO_API_URL ?? API_URL;
 export const GO_ORIGIN =
-  process.env.NEXT_PUBLIC_GO_ORIGIN ?? "http://localhost:8080";
+  process.env.NEXT_PUBLIC_GO_ORIGIN ??
+  process.env.NEXT_PUBLIC_API_ORIGIN ??
+  "http://localhost:3000";
 
 export type ApiResponse<T> = {
+  ok?: boolean;
   success?: boolean;
   message?: string;
   data?: T;
@@ -40,19 +47,21 @@ function normalizePayload<T>(payload: unknown): ApiResponse<T> {
   if (record.result && typeof record.result === "object") {
     return {
       success: record.result.success,
+      ok: record.result.success,
       data: record.result.data,
       message: record.result.error?.message,
     };
   }
 
   return {
-    success: record.success,
+    ok: record.ok,
+    success: record.success ?? record.ok,
     data: record.data,
     message: record.message,
   };
 }
 
-export async function goApiFetch<T>(
+export async function apiFetch<T>(
   path: string,
   init?: RequestInit,
 ): Promise<ApiResponse<T>> {
@@ -64,7 +73,7 @@ export async function goApiFetch<T>(
     headers.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(`${GO_API_URL}${path}`, {
+  const response = await fetch(`${API_URL}${path}`, {
     ...init,
     credentials: "include",
     headers,
@@ -75,8 +84,11 @@ export async function goApiFetch<T>(
 
   const succeeded =
     response.ok &&
-    (payload.success === true ||
-      (payload.success === undefined && response.ok));
+    (payload.ok === true ||
+      payload.success === true ||
+      (payload.ok === undefined &&
+        payload.success === undefined &&
+        response.ok));
 
   if (!succeeded) {
     throw new ApiError(payload.message || "درخواست ناموفق بود", response.status);
@@ -84,3 +96,6 @@ export async function goApiFetch<T>(
 
   return payload;
 }
+
+/** Alias for older call sites */
+export const goApiFetch = apiFetch;

@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import { DashboardOverview } from "@/features/dashboard/components/dashboard-overview";
+import { BmsOverview } from "@/features/bms/components/bms-overview";
 
-function OverviewFallback() {
+function Fallback() {
   return (
     <Box sx={{ display: "grid", placeItems: "center", minHeight: 240 }}>
       <CircularProgress />
@@ -13,8 +13,8 @@ function OverviewFallback() {
 
 export default function DashboardPage() {
   return (
-    <Suspense fallback={<OverviewFallback />}>
-      <DashboardOverview />
+    <Suspense fallback={<Fallback />}>
+      <BmsOverview />
     </Suspense>
   );
 }

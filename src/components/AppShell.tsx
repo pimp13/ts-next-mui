@@ -62,7 +62,7 @@ export function AppShell({ children }: AppShellProps) {
               textDecoration: "none",
             }}
           >
-            فان‌لایف MUI
+            مدیریت ساختمان
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
@@ -152,7 +152,7 @@ export function AppShell({ children }: AppShellProps) {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            فان‌لایف MUI · React Hook Form + React Query + Go API
+            مدیریت ساختمان · شارژ، واحدها، درخواست‌ها
           </Typography>
         </Container>
       </Box>

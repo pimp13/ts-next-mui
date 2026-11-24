@@ -8,29 +8,29 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
-import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
-import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
+import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
+import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
+import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
 import Link from "@/components/Link";
 
 const features = [
   {
-    title: "Material UI",
+    title: "شارژ و صندوق",
     description:
-      "کامپوننت‌های آماده تولید، تم‌بندی و دسترس‌پذیری در همه کنترل‌ها.",
-    icon: <WidgetsRoundedIcon color="primary" />,
+      "دوره شارژ، صورتحساب واحد، پرداخت و مانده صندوق به‌صورت شفاف و قابل پیگیری.",
+    icon: <AccountBalanceWalletRoundedIcon color="primary" />,
   },
   {
-    title: "آماده برای App Router",
+    title: "واحدها و ساکنین",
     description:
-      "کش Emotion با @mui/material-nextjs تا استایل‌های SSR با Next.js ۱۶ هم‌خوان بمانند.",
-    icon: <SpeedRoundedIcon color="primary" />,
+      "ساختار ساختمان، مالک و مستأجر، نقش مدیر و هیئت‌مدیره در یک جا.",
+    icon: <ApartmentRoundedIcon color="primary" />,
   },
   {
-    title: "توکن‌های طراحی",
+    title: "درخواست و اعلان",
     description:
-      "پالت، تایپوگرافی و شکل‌ها در یک فایل تم متمرکز و قابل گسترش.",
-    icon: <DesignServicesRoundedIcon color="primary" />,
+      "تیکت تعمیرات، پیگیری وضعیت و اعلان‌های ساختمان برای همه ساکنین.",
+    icon: <ConstructionRoundedIcon color="primary" />,
   },
 ] as const;
 
@@ -54,7 +54,7 @@ export default function HomePage() {
           sx={{ maxWidth: 640, position: "relative", zIndex: 1 }}
         >
           <Chip
-            label="typescript-next-mui"
+            label="مدیریت ساختمان مسکونی"
             sx={{
               alignSelf: "flex-start",
               bgcolor: "rgba(255,255,255,0.12)",
@@ -62,14 +62,14 @@ export default function HomePage() {
             }}
           />
           <Typography variant="h2" component="h1">
-            فان‌لایف MUI
+            مدیریت ساختمان
           </Typography>
           <Typography
             variant="h6"
             sx={{ color: "rgba(255,255,255,0.78)", fontWeight: 400 }}
           >
-            استارتر ادمین Material UI با React Hook Form، React Query و API
-            گویی روی پورت ۸۰۸۰.
+            نرم‌افزاری که جای دفترچه و اکسل مدیر ساختمان می‌نشیند: شارژ، بدهی،
+            هزینه مشترک، تعمیرات و اعلان‌ها.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
@@ -84,11 +84,11 @@ export default function HomePage() {
                 "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
               }}
             >
-              ورود به داشبورد
+              ورود به پنل
             </Button>
             <Button
               component={Link}
-              href="/components"
+              href="/dashboard"
               variant="outlined"
               size="large"
               sx={{
@@ -100,7 +100,7 @@ export default function HomePage() {
                 },
               }}
             >
-              مشاهده کامپوننت‌ها
+              مشاهده داشبورد
             </Button>
           </Stack>
         </Stack>
@@ -120,8 +120,8 @@ export default function HomePage() {
                 </Stack>
               </CardContent>
               <CardActions sx={{ px: 2, pb: 2 }}>
-                <Button component={Link} href="/components" size="small">
-                  مشاهده
+                <Button component={Link} href="/dashboard" size="small">
+                  ورود به پنل
                 </Button>
               </CardActions>
             </Card>

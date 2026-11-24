@@ -10,23 +10,47 @@ import { DashboardShell } from "@/components/dashboard/DashboardShell";
 const pageMeta: Record<string, { title: string; description?: string }> = {
   "/dashboard": {
     title: "داشبورد",
-    description: "نمای عملیاتی از API گویی",
+    description: "نمای کلی ساختمان، بدهی‌ها و درخواست‌ها",
   },
-  "/dashboard/users": {
-    title: "کاربران",
-    description: "ساخت و مدیریت حساب‌ها با React Hook Form",
+  "/dashboard/buildings": {
+    title: "ساختمان‌ها",
+    description: "مدیریت مجتمع‌ها و تنظیمات شارژ",
   },
-  "/dashboard/articles": {
-    title: "مقالات",
-    description: "فضای ویرایشی مبتنی بر React Query",
+  "/dashboard/units": {
+    title: "واحدها",
+    description: "شماره، متراژ، پارکینگ و وضعیت واحدها",
+  },
+  "/dashboard/residents": {
+    title: "ساکنین و نقش‌ها",
+    description: "مالک، مستأجر، مدیر و هیئت‌مدیره",
+  },
+  "/dashboard/charges": {
+    title: "شارژ و صورتحساب",
+    description: "دوره‌های شارژ و صورتحساب واحدها",
+  },
+  "/dashboard/payments": {
+    title: "پرداخت‌ها",
+    description: "ثبت و تأیید پرداخت شارژ",
+  },
+  "/dashboard/expenses": {
+    title: "هزینه‌ها و صندوق",
+    description: "هزینه‌های مشترک و مانده صندوق",
+  },
+  "/dashboard/tickets": {
+    title: "درخواست‌ها",
+    description: "تعمیرات و خدمات ساختمان",
+  },
+  "/dashboard/announcements": {
+    title: "اعلان‌ها",
+    description: "اطلاعیه‌های ساختمان‌محور",
   },
 };
 
 function DashboardLayoutInner({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const meta = pageMeta[pathname] ?? {
-    title: "داشبورد",
-    description: "فضای کاری فان‌لایف MUI",
+    title: "مدیریت ساختمان",
+    description: "سامانه مدیریت ساختمان مسکونی",
   };
 
   return (

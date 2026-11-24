@@ -49,7 +49,7 @@ export function LoginForm() {
             ورود
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-            احراز هویت از طریق API گویی روی پورت ۸۰۸۰.
+            ورود با حساب Fastify (مثلاً admin@funlife.local).
           </Typography>
 
           <Stack
