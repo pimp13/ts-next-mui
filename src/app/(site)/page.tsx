@@ -148,8 +148,8 @@ export default function HomePage() {
       {/* Grid Example */}
       <Grid container spacing={2.5}>
         {Array.from({ length: 6 }).map((_, i) => (
-          <Grid key={i} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
-            <Card sx={{ maxWidth: 345 }}>
+          <Grid key={i} size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 3 }}>
+            <Card>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -158,18 +158,17 @@ export default function HomePage() {
                   alt="green iguana"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Lizard
+                  <Typography gutterBottom variant="h2" sx={{ fontSize: '1.2rem', fontWeight: 400 }} component="div">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفادون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز...
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
                 <Button size="small" color="primary">
-                  Share
+                  ادامه ...
                 </Button>
               </CardActions>
             </Card>
