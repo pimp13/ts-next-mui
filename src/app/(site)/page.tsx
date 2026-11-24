@@ -243,7 +243,7 @@ export default function HomePage() {
 
         {/* For other variants, adjust the size with `width` and `height` */}
         <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={210} height={60} />
+        <Skeleton variant="text" width={210} height={60} />
         <Skeleton variant="rounded" width={210} height={60} />
 
 
@@ -314,6 +314,9 @@ export default function HomePage() {
           height: 200,
           borderRadius: 2,
           overflow: "hidden",
+          border: '1px solid',
+          borderColor: 'divider',
+          // boxShadow: 2
         }}
       >
         <Image
@@ -323,6 +326,21 @@ export default function HomePage() {
           style={{ objectFit: "cover" }}
         />
       </Box>
+
+      <Divider />
+
+
+      <Box
+        sx={{
+          width: 400,
+          height: 200,
+          backgroundImage: "url('/cat-landing.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderRadius: 2,
+        }}
+      />
+
     </Stack>
   );
 }

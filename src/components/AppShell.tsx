@@ -43,8 +43,8 @@ export function AppShell({ children }: AppShellProps) {
       <AppBar
         position="sticky"
         sx={[
-          { borderBottom: '1px solid', borderColor: 'red', boxShadow: 1 },
-          (theme) => theme.applyStyles('dark', { borderColor: grey[600] })
+          { borderBottom: '2px solid', borderColor: 'divider', },
+          // (theme) => theme.applyStyles('dark', { borderColor: grey[600] })
         ]}
       >
         <Toolbar sx={{ gap: 1 }}>
