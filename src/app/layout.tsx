@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 
-const roboto = Roboto({
+const vazirmatn = Vazirmatn({
   weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
+  subsets: ["arabic", "latin"],
   display: "swap",
+  variable: "--font-vazirmatn",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Funlife MUI",
-    template: "%s · Funlife MUI",
+    default: "فان‌لایف MUI",
+    template: "%s · فان‌لایف MUI",
   },
-  description: "Next.js + Material UI + React Query dashboard",
+  description: "داشبورد Next.js + Material UI + React Query",
 };
 
 export default function RootLayout({
@@ -24,7 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.className} suppressHydrationWarning>
+    <html
+      lang="fa"
+      dir="rtl"
+      className={`${vazirmatn.variable} ${vazirmatn.className}`}
+      suppressHydrationWarning
+    >
       <body>
         <InitColorSchemeScript
           attribute="data-mui-color-scheme"

@@ -28,11 +28,11 @@ export function LogoutButton({ variant = "button" }: LogoutButtonProps) {
 
   if (variant === "icon") {
     return (
-      <Tooltip title="Sign out">
+      <Tooltip title="خروج">
         <span>
           <IconButton
             color="inherit"
-            aria-label="Sign out"
+            aria-label="خروج"
             disabled={logoutMutation.isPending}
             onClick={handleLogout}
           >
@@ -45,14 +45,14 @@ export function LogoutButton({ variant = "button" }: LogoutButtonProps) {
 
   return (
     <Button
-      color={variant === "fullWidth" ? "inherit" : "inherit"}
+      color="inherit"
       variant={variant === "fullWidth" ? "outlined" : "text"}
       fullWidth={variant === "fullWidth"}
       startIcon={<LogoutRoundedIcon />}
       disabled={logoutMutation.isPending}
       onClick={handleLogout}
     >
-      {logoutMutation.isPending ? "Signing out..." : "Sign out"}
+      {logoutMutation.isPending ? "در حال خروج..." : "خروج"}
     </Button>
   );
 }

@@ -30,10 +30,10 @@ type UserFormDialogProps = {
 };
 
 const roleOptions = [
-  { value: "user", label: "User" },
-  { value: "editor", label: "Editor" },
-  { value: "admin", label: "Admin" },
-  { value: "super_admin", label: "Super Admin" },
+  { value: "user", label: "کاربر" },
+  { value: "editor", label: "ویراستار" },
+  { value: "admin", label: "مدیر" },
+  { value: "super_admin", label: "سوپر ادمین" },
 ] as const;
 
 export function UserFormDialog({
@@ -95,7 +95,7 @@ export function UserFormDialog({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>{isEdit ? "Edit user" : "Create user"}</DialogTitle>
+      <DialogTitle>{isEdit ? "ویرایش کاربر" : "ایجاد کاربر"}</DialogTitle>
       <DialogContent>
         {isEdit ? (
           <Stack
@@ -107,14 +107,14 @@ export function UserFormDialog({
           >
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
-                label="First name"
+                label="نام"
                 fullWidth
                 error={Boolean(editForm.formState.errors.first_name)}
                 helperText={editForm.formState.errors.first_name?.message}
                 {...editForm.register("first_name")}
               />
               <TextField
-                label="Last name"
+                label="نام خانوادگی"
                 fullWidth
                 error={Boolean(editForm.formState.errors.last_name)}
                 helperText={editForm.formState.errors.last_name?.message}
@@ -122,7 +122,7 @@ export function UserFormDialog({
               />
             </Stack>
             <TextField
-              label="Email"
+              label="ایمیل"
               type="email"
               fullWidth
               error={Boolean(editForm.formState.errors.email)}
@@ -130,7 +130,7 @@ export function UserFormDialog({
               {...editForm.register("email")}
             />
             <TextField
-              label="New password (optional)"
+              label="رمز عبور جدید (اختیاری)"
               type="password"
               fullWidth
               error={Boolean(editForm.formState.errors.password)}
@@ -144,7 +144,7 @@ export function UserFormDialog({
                 <TextField
                   {...field}
                   select
-                  label="Role"
+                  label="نقش"
                   fullWidth
                   error={Boolean(editForm.formState.errors.role_slug)}
                   helperText={editForm.formState.errors.role_slug?.message}
@@ -161,10 +161,10 @@ export function UserFormDialog({
               control={editForm.control}
               name="status"
               render={({ field }) => (
-                <TextField {...field} select label="Status" fullWidth>
-                  <MenuItem value="active">Active</MenuItem>
-                  <MenuItem value="inactive">Inactive</MenuItem>
-                  <MenuItem value="banned">Banned</MenuItem>
+                <TextField {...field} select label="وضعیت" fullWidth>
+                  <MenuItem value="active">فعال</MenuItem>
+                  <MenuItem value="inactive">غیرفعال</MenuItem>
+                  <MenuItem value="banned">مسدود</MenuItem>
                 </TextField>
               )}
             />
@@ -179,14 +179,14 @@ export function UserFormDialog({
           >
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
-                label="First name"
+                label="نام"
                 fullWidth
                 error={Boolean(createForm.formState.errors.first_name)}
                 helperText={createForm.formState.errors.first_name?.message}
                 {...createForm.register("first_name")}
               />
               <TextField
-                label="Last name"
+                label="نام خانوادگی"
                 fullWidth
                 error={Boolean(createForm.formState.errors.last_name)}
                 helperText={createForm.formState.errors.last_name?.message}
@@ -194,7 +194,7 @@ export function UserFormDialog({
               />
             </Stack>
             <TextField
-              label="Email"
+              label="ایمیل"
               type="email"
               fullWidth
               error={Boolean(createForm.formState.errors.email)}
@@ -202,7 +202,7 @@ export function UserFormDialog({
               {...createForm.register("email")}
             />
             <TextField
-              label="Password"
+              label="رمز عبور"
               type="password"
               fullWidth
               error={Boolean(createForm.formState.errors.password)}
@@ -216,7 +216,7 @@ export function UserFormDialog({
                 <TextField
                   {...field}
                   select
-                  label="Role"
+                  label="نقش"
                   fullWidth
                   error={Boolean(createForm.formState.errors.role_slug)}
                   helperText={createForm.formState.errors.role_slug?.message}
@@ -234,7 +234,7 @@ export function UserFormDialog({
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
         <Button onClick={onClose} disabled={pending}>
-          Cancel
+          انصراف
         </Button>
         <Button
           type="submit"
@@ -244,11 +244,11 @@ export function UserFormDialog({
         >
           {pending
             ? isEdit
-              ? "Saving..."
-              : "Creating..."
+              ? "در حال ذخیره..."
+              : "در حال ایجاد..."
             : isEdit
-              ? "Save changes"
-              : "Create user"}
+              ? "ذخیره تغییرات"
+              : "ایجاد کاربر"}
         </Button>
       </DialogActions>
     </Dialog>

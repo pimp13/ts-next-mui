@@ -33,11 +33,11 @@ export function useLogin() {
     mutationFn: (input: LoginInput) => login(input),
     onSuccess: async (response) => {
       queryClient.setQueryData(queryKeys.auth.me, response.data ?? null);
-      enqueueSnackbar("Signed in", { variant: "success" });
+      enqueueSnackbar("ورود موفق", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Login failed",
+        error instanceof ApiError ? error.message : "ورود ناموفق بود",
         { variant: "error" },
       );
     },
@@ -53,7 +53,7 @@ export function useLogout() {
     onSuccess: async () => {
       queryClient.setQueryData(queryKeys.auth.me, null);
       await queryClient.invalidateQueries({ queryKey: queryKeys.auth.me });
-      enqueueSnackbar("Signed out", { variant: "success" });
+      enqueueSnackbar("خارج شدید", { variant: "success" });
     },
   });
 }

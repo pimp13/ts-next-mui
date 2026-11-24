@@ -40,16 +40,16 @@ export function LoginForm() {
             : "radial-gradient(circle at top left, rgba(11,107,203,0.12), transparent 42%)",
       }}
     >
-      <Box sx={{ position: "absolute", top: 16, right: 16 }}>
+      <Box sx={{ position: "absolute", top: 16, left: 16 }}>
         <ThemeToggle />
       </Box>
       <Card sx={{ width: "100%", maxWidth: 420 }} variant="outlined">
         <CardContent sx={{ p: 3 }}>
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
-            Sign in
+            ورود
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-            Authenticate against the Go API on port 8080.
+            احراز هویت از طریق API گویی روی پورت ۸۰۸۰.
           </Typography>
 
           <Stack
@@ -62,7 +62,7 @@ export function LoginForm() {
             })}
           >
             <TextField
-              label="Email"
+              label="ایمیل"
               type="email"
               fullWidth
               autoComplete="email"
@@ -71,7 +71,7 @@ export function LoginForm() {
               {...form.register("email")}
             />
             <TextField
-              label="Password"
+              label="رمز عبور"
               type="password"
               fullWidth
               autoComplete="current-password"
@@ -85,7 +85,7 @@ export function LoginForm() {
               size="large"
               disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? "Signing in..." : "Sign in"}
+              {loginMutation.isPending ? "در حال ورود..." : "ورود"}
             </Button>
           </Stack>
         </CardContent>

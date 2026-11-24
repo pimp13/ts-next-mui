@@ -79,7 +79,7 @@ export async function goApiFetch<T>(
       (payload.success === undefined && response.ok));
 
   if (!succeeded) {
-    throw new ApiError(payload.message || "Request failed", response.status);
+    throw new ApiError(payload.message || "درخواست ناموفق بود", response.status);
   }
 
   return payload;

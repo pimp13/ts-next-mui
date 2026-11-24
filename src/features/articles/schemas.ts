@@ -8,22 +8,22 @@ export const articlesFiltersSchema = z.object({
 });
 
 export const articleFormSchema = z.object({
-  title: z.string().min(3, "Title must be at least 3 characters").max(255),
+  title: z.string().min(3, "عنوان حداقل ۳ کاراکتر باشد").max(255),
   slug: z
     .string()
     .max(255)
     .refine(
       (value) => value === "" || value.length >= 3,
-      "Slug must be at least 3 characters",
+      "اسلاگ حداقل ۳ کاراکتر باشد",
     ),
-  excerpt: z.string().min(3, "Excerpt must be at least 3 characters").max(500),
-  content: z.string().min(3, "Content must be at least 3 characters"),
+  excerpt: z.string().min(3, "خلاصه حداقل ۳ کاراکتر باشد").max(500),
+  content: z.string().min(3, "محتوا حداقل ۳ کاراکتر باشد"),
   cover_image: z
     .string()
     .max(500)
     .refine(
       (value) => value === "" || value.length >= 3,
-      "Cover image must be at least 3 characters",
+      "آدرس تصویر کاور حداقل ۳ کاراکتر باشد",
     ),
   status: articleStatusSchema,
 });

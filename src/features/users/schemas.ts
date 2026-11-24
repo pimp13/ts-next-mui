@@ -13,22 +13,22 @@ export const usersFiltersSchema = z.object({
 });
 
 export const createUserSchema = z.object({
-  first_name: z.string().min(2, "First name must be at least 2 characters"),
-  last_name: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.email("Enter a valid email"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  first_name: z.string().min(2, "نام حداقل ۲ کاراکتر باشد"),
+  last_name: z.string().min(2, "نام خانوادگی حداقل ۲ کاراکتر باشد"),
+  email: z.email("ایمیل معتبر وارد کنید"),
+  password: z.string().min(8, "رمز عبور حداقل ۸ کاراکتر باشد"),
   role_slug: goRoleSlugSchema,
 });
 
 export const updateUserSchema = z.object({
-  first_name: z.string().min(2, "First name must be at least 2 characters"),
-  last_name: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.email("Enter a valid email"),
+  first_name: z.string().min(2, "نام حداقل ۲ کاراکتر باشد"),
+  last_name: z.string().min(2, "نام خانوادگی حداقل ۲ کاراکتر باشد"),
+  email: z.email("ایمیل معتبر وارد کنید"),
   password: z
     .string()
     .refine(
       (value) => value === "" || value.length >= 8,
-      "Password must be at least 8 characters",
+      "رمز عبور حداقل ۸ کاراکتر باشد",
     ),
   role_slug: goRoleSlugSchema,
   status: z.enum(["active", "inactive", "banned"]),

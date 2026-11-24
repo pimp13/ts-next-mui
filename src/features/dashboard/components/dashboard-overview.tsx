@@ -26,23 +26,23 @@ export function DashboardOverview() {
 
   const cards = [
     {
-      label: "Users",
+      label: "کاربران",
       value: usersQuery.isLoading ? "…" : String(users.length),
-      hint: "Accounts from Go /users",
+      hint: "حساب‌ها از Go /users",
       icon: <PeopleRoundedIcon color="primary" />,
       progress: Math.min(users.length * 8, 100),
     },
     {
-      label: "Articles",
+      label: "مقالات",
       value: articlesQuery.isLoading ? "…" : String(articles.length),
-      hint: "All editorial records",
+      hint: "همه رکوردهای ویرایشی",
       icon: <ArticleRoundedIcon color="primary" />,
       progress: Math.min(articles.length * 10, 100),
     },
     {
-      label: "Published",
+      label: "منتشرشده",
       value: articlesQuery.isLoading ? "…" : String(published.length),
-      hint: `${drafts.length} drafts remaining`,
+      hint: `${drafts.length} پیش‌نویس باقی‌مانده`,
       icon: <PublishRoundedIcon color="primary" />,
       progress:
         articles.length === 0
@@ -55,10 +55,10 @@ export function DashboardOverview() {
     <Stack spacing={3}>
       <Box>
         <Typography variant="h4" sx={{ fontWeight: 700 }}>
-          Welcome{user ? `, ${user.name}` : ""}
+          خوش آمدید{user ? `، ${user.name}` : ""}
         </Typography>
         <Typography sx={{ color: "text.secondary" }}>
-          Live overview from the Go API using React Query.
+          نمای زنده از API گویی با React Query.
         </Typography>
       </Box>
 
@@ -97,8 +97,8 @@ export function DashboardOverview() {
         <Card variant="outlined">
           <CardContent>
             <Typography color="error">
-              Could not load some dashboard data. Sign in with an account that
-              has users/articles permissions (cookie auth against :8080).
+              بخشی از داده‌های داشبورد بارگذاری نشد. با حسابی وارد شوید که دسترسی
+              کاربران/مقالات دارد (احراز هویت کوکی روی :8080).
             </Typography>
           </CardContent>
         </Card>

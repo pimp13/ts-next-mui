@@ -27,17 +27,17 @@ const DRAWER_WIDTH = 260;
 const navItems = [
   {
     href: "/dashboard",
-    label: "Overview",
+    label: "نمای کلی",
     icon: <DashboardRoundedIcon />,
   },
   {
     href: "/dashboard/users",
-    label: "Users",
+    label: "کاربران",
     icon: <PeopleRoundedIcon />,
   },
   {
     href: "/dashboard/articles",
-    label: "Articles",
+    label: "مقالات",
     icon: <ArticleRoundedIcon />,
   },
 ] as const;
@@ -66,7 +66,7 @@ export function DashboardShell({
           variant="h6"
           sx={{ fontWeight: 700, color: "inherit", textDecoration: "none" }}
         >
-          Funlife Admin
+          پنل فان‌لایف
         </Typography>
       </Toolbar>
       <Divider />
@@ -94,10 +94,10 @@ export function DashboardShell({
       <Divider />
       <Box sx={{ p: 2 }}>
         <Typography variant="body2" sx={{ fontWeight: 600 }}>
-          {user?.name ?? "Guest"}
+          {user?.name ?? "مهمان"}
         </Typography>
         <Typography variant="caption" sx={{ color: "text.secondary" }}>
-          {user?.email ?? "Sign in to manage the workspace"}
+          {user?.email ?? "برای مدیریت وارد شوید"}
         </Typography>
         <Box sx={{ mt: 1.5 }}>
           <LogoutButton variant="fullWidth" />
@@ -145,6 +145,9 @@ export function DashboardShell({
       >
         <Drawer
           variant="temporary"
+          // With stylis-plugin-rtl, left/right CSS is flipped — use "left"
+          // so the paper ends up on the physical right.
+          anchor="left"
           open={mobileOpen}
           onClose={() => setMobileOpen(false)}
           ModalProps={{ keepMounted: true }}
@@ -157,6 +160,7 @@ export function DashboardShell({
         </Drawer>
         <Drawer
           variant="permanent"
+          anchor="left"
           open
           sx={{
             display: { xs: "none", md: "block" },

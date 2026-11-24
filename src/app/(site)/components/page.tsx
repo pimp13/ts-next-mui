@@ -24,45 +24,56 @@ export default function ComponentsPage() {
   const [remember, setRemember] = useState(false);
   const handleSave = () => {
     console.log(formData, role, remember);
-  }
+  };
 
   return (
     <Stack spacing={3} sx={{ maxWidth: 560 }}>
       <Box>
         <Typography variant="h4" component="h1" gutterBottom>
-          Components
+          کامپوننت‌ها
         </Typography>
         <Typography sx={{ color: "text.secondary" }}>
-          A small playground of common Material UI controls using the project
-          theme.
+          زمین بازی کوچکی از کنترل‌های رایج Material UI با تم پروژه.
         </Typography>
       </Box>
 
       <Alert severity="info">
-        Theme tokens live in <code>src/theme.ts</code>. Extend palette and
-        component overrides there.
+        توکن‌های تم در <code>src/theme.ts</code> هستند. پالت و overrideها را آنجا
+        گسترش دهید.
       </Alert>
 
-      <TextField label="Full name" placeholder="Your name" type="text" fullWidth size="small"
+      <TextField
+        label="نام کامل"
+        placeholder="نام شما"
+        type="text"
+        fullWidth
+        size="small"
         value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-      <TextField label="Email" placeholder="Your email" type="email" fullWidth size="small"
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      />
+      <TextField
+        label="ایمیل"
+        placeholder="ایمیل شما"
+        type="email"
+        fullWidth
+        size="small"
         value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+      />
       <TextField
         select
-        label="Role"
+        label="نقش"
         value={role}
         onChange={(event) => setRole(event.target.value)}
         fullWidth
       >
-        <MenuItem value="admin">Admin</MenuItem>
-        <MenuItem value="editor">Editor</MenuItem>
-        <MenuItem value="viewer">Viewer</MenuItem>
+        <MenuItem value="admin">مدیر</MenuItem>
+        <MenuItem value="editor">ویراستار</MenuItem>
+        <MenuItem value="viewer">بیننده</MenuItem>
       </TextField>
       <TextField
-        label="Notes"
-        placeholder="Optional notes"
+        label="یادداشت"
+        placeholder="یادداشت اختیاری"
         multiline
         minRows={3}
         fullWidth
@@ -77,7 +88,7 @@ export default function ComponentsPage() {
             onChange={(event) => setEnabled(event.target.checked)}
           />
         }
-        label="Email notifications"
+        label="اعلان‌های ایمیل"
       />
       <FormControlLabel
         control={
@@ -86,16 +97,29 @@ export default function ComponentsPage() {
             onChange={(event) => setRemember(event.target.checked)}
           />
         }
-        label="Remember me"
+        label="مرا به خاطر بسپار"
       />
 
       <Stack direction="row" spacing={1.5}>
-        <Button onClick={handleSave} variant="contained" startIcon={<SaveRoundedIcon />}>
-          Save changes
+        <Button
+          onClick={handleSave}
+          variant="contained"
+          startIcon={<SaveRoundedIcon />}
+        >
+          ذخیره تغییرات
         </Button>
-        <Button variant="outlined" onClick={() => setFormData({ name: "", email: "", notes: "" })}>Cancel</Button>
-        <Button variant="text" color="secondary" onClick={() => setFormData({ name: "", email: "", notes: "" })}>
-          Reset
+        <Button
+          variant="outlined"
+          onClick={() => setFormData({ name: "", email: "", notes: "" })}
+        >
+          انصراف
+        </Button>
+        <Button
+          variant="text"
+          color="secondary"
+          onClick={() => setFormData({ name: "", email: "", notes: "" })}
+        >
+          بازنشانی
         </Button>
       </Stack>
     </Stack>

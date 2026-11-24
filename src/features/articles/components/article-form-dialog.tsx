@@ -72,7 +72,7 @@ export function ArticleFormDialog({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-      <DialogTitle>{isEdit ? "Edit article" : "Create article"}</DialogTitle>
+      <DialogTitle>{isEdit ? "ویرایش مقاله" : "ایجاد مقاله"}</DialogTitle>
       <DialogContent>
         <Stack
           component="form"
@@ -82,22 +82,22 @@ export function ArticleFormDialog({
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <TextField
-            label="Title"
+            label="عنوان"
             fullWidth
             error={Boolean(form.formState.errors.title)}
             helperText={form.formState.errors.title?.message}
             {...form.register("title")}
           />
           <TextField
-            label="Slug"
+            label="اسلاگ"
             fullWidth
-            placeholder="optional-auto-or-custom"
+            placeholder="اختیاری-خودکار-یا-سفارشی"
             error={Boolean(form.formState.errors.slug)}
             helperText={form.formState.errors.slug?.message}
             {...form.register("slug")}
           />
           <TextField
-            label="Excerpt"
+            label="خلاصه"
             fullWidth
             multiline
             minRows={2}
@@ -106,7 +106,7 @@ export function ArticleFormDialog({
             {...form.register("excerpt")}
           />
           <TextField
-            label="Content"
+            label="محتوا"
             fullWidth
             multiline
             minRows={5}
@@ -115,7 +115,7 @@ export function ArticleFormDialog({
             {...form.register("content")}
           />
           <TextField
-            label="Cover image URL"
+            label="آدرس تصویر کاور"
             fullWidth
             error={Boolean(form.formState.errors.cover_image)}
             helperText={form.formState.errors.cover_image?.message}
@@ -125,10 +125,10 @@ export function ArticleFormDialog({
             control={form.control}
             name="status"
             render={({ field }) => (
-              <TextField {...field} select label="Status" fullWidth>
-                <MenuItem value="draft">Draft</MenuItem>
-                <MenuItem value="published">Published</MenuItem>
-                <MenuItem value="archived">Archived</MenuItem>
+              <TextField {...field} select label="وضعیت" fullWidth>
+                <MenuItem value="draft">پیش‌نویس</MenuItem>
+                <MenuItem value="published">منتشرشده</MenuItem>
+                <MenuItem value="archived">بایگانی</MenuItem>
               </TextField>
             )}
           />
@@ -136,7 +136,7 @@ export function ArticleFormDialog({
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
         <Button onClick={onClose} disabled={pending}>
-          Cancel
+          انصراف
         </Button>
         <Button
           type="submit"
@@ -146,11 +146,11 @@ export function ArticleFormDialog({
         >
           {pending
             ? isEdit
-              ? "Saving..."
-              : "Creating..."
+              ? "در حال ذخیره..."
+              : "در حال ایجاد..."
             : isEdit
-              ? "Save changes"
-              : "Create article"}
+              ? "ذخیره تغییرات"
+              : "ایجاد مقاله"}
         </Button>
       </DialogActions>
     </Dialog>

@@ -8,7 +8,7 @@ export function AppSnackbarProvider({ children }: { children: ReactNode }) {
     <SnackbarProvider
       maxSnack={4}
       autoHideDuration={3200}
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
     >
       {children}
     </SnackbarProvider>

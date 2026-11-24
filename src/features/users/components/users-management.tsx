@@ -32,6 +32,19 @@ import {
   type ManagedUser,
 } from "@/features/users/types";
 
+const statusLabel: Record<string, string> = {
+  active: "فعال",
+  inactive: "غیرفعال",
+  banned: "مسدود",
+};
+
+const roleLabel: Record<string, string> = {
+  user: "کاربر",
+  editor: "ویراستار",
+  admin: "مدیر",
+  super_admin: "سوپر ادمین",
+};
+
 export function UsersManagement() {
   const filtersForm = useForm<UsersFiltersValues>({
     resolver: zodResolver(usersFiltersSchema),
@@ -55,34 +68,38 @@ export function UsersManagement() {
     () => [
       {
         field: "name",
-        headerName: "Name",
+        headerName: "نام",
         flex: 1,
         minWidth: 160,
         valueGetter: (_value, row) => userDisplayName(row),
       },
-      { field: "email", headerName: "Email", flex: 1, minWidth: 200 },
+      { field: "email", headerName: "ایمیل", flex: 1, minWidth: 200 },
       {
         field: "role",
-        headerName: "Role",
+        headerName: "نقش",
         width: 140,
-        valueGetter: (_value, row) => row.role?.name || row.role?.slug || "—",
+        valueGetter: (_value, row) => {
+          const slug = row.role?.slug;
+          if (slug && roleLabel[slug]) return roleLabel[slug];
+          return row.role?.name || slug || "—";
+        },
       },
       {
         field: "status",
-        headerName: "Status",
+        headerName: "وضعیت",
         width: 120,
         renderCell: (params) => (
           <Chip
             size="small"
-            label={params.value}
+            label={statusLabel[String(params.value)] ?? params.value}
             color={params.value === "active" ? "success" : "default"}
           />
         ),
       },
       {
         field: "actions",
-        headerName: "Actions",
-        width: 160,
+        headerName: "عملیات",
+        width: 180,
         sortable: false,
         filterable: false,
         renderCell: (params) => (
@@ -96,7 +113,7 @@ export function UsersManagement() {
                 setDialogOpen(true);
               }}
             >
-              Edit
+              ویرایش
             </Button>
             <Button
               size="small"
@@ -104,12 +121,16 @@ export function UsersManagement() {
               startIcon={<DeleteOutlinedIcon />}
               disabled={deleteMutation.isPending}
               onClick={() => {
-                if (window.confirm(`Delete ${userDisplayName(params.row)}?`)) {
+                if (
+                  window.confirm(
+                    `حذف ${userDisplayName(params.row)}؟`,
+                  )
+                ) {
                   deleteMutation.mutate(params.row.id);
                 }
               }}
             >
-              Delete
+              حذف
             </Button>
           </Stack>
         ),
@@ -127,10 +148,10 @@ export function UsersManagement() {
       >
         <Box>
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
-            Users
+            کاربران
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Manage accounts through the Go users API with React Query.
+            مدیریت حساب‌ها از طریق API کاربران گویی با React Query.
           </Typography>
         </Box>
         <Button
@@ -142,20 +163,20 @@ export function UsersManagement() {
             setDialogOpen(true);
           }}
         >
-          Add user
+          افزودن کاربر
         </Button>
       </Stack>
 
       <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
         <TextField
-          label="Search"
+          label="جستجو"
           size="small"
           fullWidth
           {...filtersForm.register("search")}
         />
         <TextField
           select
-          label="Role"
+          label="نقش"
           size="small"
           sx={{ minWidth: 180 }}
           value={filters.role}
@@ -166,11 +187,11 @@ export function UsersManagement() {
             )
           }
         >
-          <MenuItem value="ALL">All roles</MenuItem>
-          <MenuItem value="user">User</MenuItem>
-          <MenuItem value="editor">Editor</MenuItem>
-          <MenuItem value="admin">Admin</MenuItem>
-          <MenuItem value="super_admin">Super Admin</MenuItem>
+          <MenuItem value="ALL">همه نقش‌ها</MenuItem>
+          <MenuItem value="user">کاربر</MenuItem>
+          <MenuItem value="editor">ویراستار</MenuItem>
+          <MenuItem value="admin">مدیر</MenuItem>
+          <MenuItem value="super_admin">سوپر ادمین</MenuItem>
         </TextField>
       </Stack>
 

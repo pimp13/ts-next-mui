@@ -34,11 +34,11 @@ export function useCreateUser() {
     mutationFn: (input: CreateUserInput) => createUser(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.users.all });
-      enqueueSnackbar("User created", { variant: "success" });
+      enqueueSnackbar("کاربر ایجاد شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to create user",
+        error instanceof ApiError ? error.message : "ایجاد کاربر ناموفق بود",
         { variant: "error" },
       );
     },
@@ -54,11 +54,13 @@ export function useUpdateUser() {
       updateUser(id, input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.users.all });
-      enqueueSnackbar("User updated", { variant: "success" });
+      enqueueSnackbar("کاربر به‌روزرسانی شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to update user",
+        error instanceof ApiError
+          ? error.message
+          : "به‌روزرسانی کاربر ناموفق بود",
         { variant: "error" },
       );
     },
@@ -73,11 +75,11 @@ export function useDeleteUser() {
     mutationFn: (id: string) => deleteUser(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.users.all });
-      enqueueSnackbar("User deleted", { variant: "success" });
+      enqueueSnackbar("کاربر حذف شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to delete user",
+        error instanceof ApiError ? error.message : "حذف کاربر ناموفق بود",
         { variant: "error" },
       );
     },

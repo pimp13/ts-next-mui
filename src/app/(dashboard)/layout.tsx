@@ -9,24 +9,24 @@ import { DashboardShell } from "@/components/dashboard/DashboardShell";
 
 const pageMeta: Record<string, { title: string; description?: string }> = {
   "/dashboard": {
-    title: "Dashboard",
-    description: "Operational overview from the Go API",
+    title: "داشبورد",
+    description: "نمای عملیاتی از API گویی",
   },
   "/dashboard/users": {
-    title: "Users",
-    description: "Create and manage accounts with React Hook Form",
+    title: "کاربران",
+    description: "ساخت و مدیریت حساب‌ها با React Hook Form",
   },
   "/dashboard/articles": {
-    title: "Articles",
-    description: "Editorial workspace powered by React Query",
+    title: "مقالات",
+    description: "فضای ویرایشی مبتنی بر React Query",
   },
 };
 
 function DashboardLayoutInner({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const meta = pageMeta[pathname] ?? {
-    title: "Dashboard",
-    description: "Funlife MUI workspace",
+    title: "داشبورد",
+    description: "فضای کاری فان‌لایف MUI",
   };
 
   return (

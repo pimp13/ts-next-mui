@@ -9,30 +9,36 @@ import { useColorScheme } from "@mui/material/styles";
 
 const cycle = ["system", "light", "dark"] as const;
 
+const modeLabel = {
+  system: "تم سیستم",
+  light: "تم روشن",
+  dark: "تم تاریک",
+} as const;
+
+const nextLabel = {
+  system: "روشن",
+  light: "تاریک",
+  dark: "سیستم",
+} as const;
+
 export function ThemeToggle() {
   const { mode, setMode } = useColorScheme();
 
   if (!mode) {
     return (
-      <IconButton color="inherit" aria-label="Toggle color mode" disabled>
+      <IconButton color="inherit" aria-label="تغییر تم" disabled>
         <SettingsBrightnessRoundedIcon />
       </IconButton>
     );
   }
 
   const next = cycle[(cycle.indexOf(mode) + 1) % cycle.length];
-  const label =
-    mode === "system"
-      ? "System theme"
-      : mode === "light"
-        ? "Light theme"
-        : "Dark theme";
 
   return (
-    <Tooltip title={`${label} · click for ${next}`}>
+    <Tooltip title={`${modeLabel[mode]} · کلیک برای ${nextLabel[mode]}`}>
       <IconButton
         color="inherit"
-        aria-label={`Color mode: ${mode}. Switch to ${next}`}
+        aria-label={`تم: ${modeLabel[mode]}. تغییر به ${nextLabel[mode]}`}
         onClick={() => setMode(next)}
       >
         {mode === "dark" ? (

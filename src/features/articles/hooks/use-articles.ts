@@ -37,11 +37,11 @@ export function useCreateArticle() {
     mutationFn: (input: CreateArticleInput) => createArticle(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.articles.all });
-      enqueueSnackbar("Article created", { variant: "success" });
+      enqueueSnackbar("مقاله ایجاد شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to create article",
+        error instanceof ApiError ? error.message : "ایجاد مقاله ناموفق بود",
         { variant: "error" },
       );
     },
@@ -57,11 +57,13 @@ export function useUpdateArticle() {
       updateArticle(id, input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.articles.all });
-      enqueueSnackbar("Article updated", { variant: "success" });
+      enqueueSnackbar("مقاله به‌روزرسانی شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to update article",
+        error instanceof ApiError
+          ? error.message
+          : "به‌روزرسانی مقاله ناموفق بود",
         { variant: "error" },
       );
     },
@@ -76,11 +78,11 @@ export function useDeleteArticle() {
     mutationFn: (id: string) => deleteArticle(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.articles.all });
-      enqueueSnackbar("Article deleted", { variant: "success" });
+      enqueueSnackbar("مقاله حذف شد", { variant: "success" });
     },
     onError: (error) => {
       enqueueSnackbar(
-        error instanceof ApiError ? error.message : "Failed to delete article",
+        error instanceof ApiError ? error.message : "حذف مقاله ناموفق بود",
         { variant: "error" },
       );
     },

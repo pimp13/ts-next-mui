@@ -28,6 +28,12 @@ import {
 } from "@/features/articles/schemas";
 import type { Article } from "@/features/articles/types";
 
+const statusLabel: Record<string, string> = {
+  draft: "پیش‌نویس",
+  published: "منتشرشده",
+  archived: "بایگانی",
+};
+
 export function ArticlesManagement() {
   const filtersForm = useForm<ArticlesFiltersValues>({
     resolver: zodResolver(articlesFiltersSchema),
@@ -49,16 +55,16 @@ export function ArticlesManagement() {
 
   const columns = useMemo<GridColDef<Article>[]>(
     () => [
-      { field: "title", headerName: "Title", flex: 1, minWidth: 180 },
-      { field: "slug", headerName: "Slug", width: 180 },
+      { field: "title", headerName: "عنوان", flex: 1, minWidth: 180 },
+      { field: "slug", headerName: "اسلاگ", width: 180 },
       {
         field: "status",
-        headerName: "Status",
+        headerName: "وضعیت",
         width: 130,
         renderCell: (params) => (
           <Chip
             size="small"
-            label={params.value}
+            label={statusLabel[String(params.value)] ?? params.value}
             color={
               params.value === "published"
                 ? "success"
@@ -71,20 +77,22 @@ export function ArticlesManagement() {
       },
       {
         field: "view_count",
-        headerName: "Views",
+        headerName: "بازدید",
         width: 90,
         type: "number",
       },
       {
         field: "created_at",
-        headerName: "Created",
+        headerName: "ایجاد",
         width: 130,
         valueFormatter: (value) =>
-          value ? new Date(String(value)).toLocaleDateString() : "—",
+          value
+            ? new Date(String(value)).toLocaleDateString("fa-IR")
+            : "—",
       },
       {
         field: "actions",
-        headerName: "Actions",
+        headerName: "عملیات",
         width: 180,
         sortable: false,
         filterable: false,
@@ -99,7 +107,7 @@ export function ArticlesManagement() {
                 setDialogOpen(true);
               }}
             >
-              Edit
+              ویرایش
             </Button>
             <Button
               size="small"
@@ -107,12 +115,12 @@ export function ArticlesManagement() {
               startIcon={<DeleteOutlinedIcon />}
               disabled={deleteMutation.isPending}
               onClick={() => {
-                if (window.confirm(`Delete “${params.row.title}”?`)) {
+                if (window.confirm(`حذف «${params.row.title}»؟`)) {
                   deleteMutation.mutate(params.row.id);
                 }
               }}
             >
-              Delete
+              حذف
             </Button>
           </Stack>
         ),
@@ -154,10 +162,10 @@ export function ArticlesManagement() {
       >
         <Box>
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
-            Articles
+            مقالات
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Editorial workspace powered by React Hook Form + React Query.
+            فضای ویرایشی با React Hook Form و React Query.
           </Typography>
         </Box>
         <Button
@@ -169,20 +177,20 @@ export function ArticlesManagement() {
             setDialogOpen(true);
           }}
         >
-          New article
+          مقاله جدید
         </Button>
       </Stack>
 
       <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
         <TextField
-          label="Search"
+          label="جستجو"
           size="small"
           fullWidth
           {...filtersForm.register("search")}
         />
         <TextField
           select
-          label="Status"
+          label="وضعیت"
           size="small"
           sx={{ minWidth: 180 }}
           value={filters.status}
@@ -193,10 +201,10 @@ export function ArticlesManagement() {
             )
           }
         >
-          <MenuItem value="all">All</MenuItem>
-          <MenuItem value="draft">Draft</MenuItem>
-          <MenuItem value="published">Published</MenuItem>
-          <MenuItem value="archived">Archived</MenuItem>
+          <MenuItem value="all">همه</MenuItem>
+          <MenuItem value="draft">پیش‌نویس</MenuItem>
+          <MenuItem value="published">منتشرشده</MenuItem>
+          <MenuItem value="archived">بایگانی</MenuItem>
         </TextField>
       </Stack>
 

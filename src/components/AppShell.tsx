@@ -24,9 +24,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useCurrentUser } from "@/features/auth/hooks/use-auth";
 
 const navItems = [
-  { href: "/", label: "Home", icon: <HomeRoundedIcon /> },
-  { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
-  { href: "/components", label: "Components", icon: <WidgetsRoundedIcon /> },
+  { href: "/", label: "خانه", icon: <HomeRoundedIcon /> },
+  { href: "/dashboard", label: "داشبورد", icon: <DashboardRoundedIcon /> },
+  { href: "/components", label: "کامپوننت‌ها", icon: <WidgetsRoundedIcon /> },
 ] as const;
 
 type AppShellProps = {
@@ -44,7 +44,7 @@ export function AppShell({ children }: AppShellProps) {
           <IconButton
             edge="start"
             color="inherit"
-            aria-label="Open navigation"
+            aria-label="باز کردن منو"
             onClick={() => setOpen(true)}
             sx={{ display: { md: "none" } }}
           >
@@ -62,7 +62,7 @@ export function AppShell({ children }: AppShellProps) {
               textDecoration: "none",
             }}
           >
-            Funlife MUI
+            فان‌لایف MUI
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
@@ -80,7 +80,7 @@ export function AppShell({ children }: AppShellProps) {
               <LogoutButton />
             ) : (
               <Button component={Link} href="/login" color="inherit" startIcon={<LoginRoundedIcon />}>
-                Sign in
+                ورود
               </Button>
             )}
           </Box>
@@ -94,6 +94,7 @@ export function AppShell({ children }: AppShellProps) {
       </AppBar>
 
       <Drawer
+        // stylis-plugin-rtl flips left/right — "left" lands on physical right
         anchor="left"
         open={open}
         onClose={() => setOpen(false)}
@@ -101,7 +102,7 @@ export function AppShell({ children }: AppShellProps) {
       >
         <Toolbar>
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            Navigation
+            منو
           </Typography>
         </Toolbar>
         <List>
@@ -125,7 +126,7 @@ export function AppShell({ children }: AppShellProps) {
               <ListItemIcon>
                 <LoginRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Sign in" />
+              <ListItemText primary="ورود" />
             </ListItemButton>
           ) : null}
         </List>
@@ -151,7 +152,7 @@ export function AppShell({ children }: AppShellProps) {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Funlife MUI · React Hook Form + React Query + Go API
+            فان‌لایف MUI · React Hook Form + React Query + Go API
           </Typography>
         </Container>
       </Box>

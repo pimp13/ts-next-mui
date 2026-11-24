@@ -7,7 +7,7 @@ import Chip from "@mui/material/Chip";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
 import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
@@ -17,19 +17,19 @@ const features = [
   {
     title: "Material UI",
     description:
-      "Production-ready components, theming, and accessibility built into every control.",
+      "کامپوننت‌های آماده تولید، تم‌بندی و دسترس‌پذیری در همه کنترل‌ها.",
     icon: <WidgetsRoundedIcon color="primary" />,
   },
   {
-    title: "App Router ready",
+    title: "آماده برای App Router",
     description:
-      "Emotion cache via @mui/material-nextjs so SSR styles stay in sync with Next.js 16.",
+      "کش Emotion با @mui/material-nextjs تا استایل‌های SSR با Next.js ۱۶ هم‌خوان بمانند.",
     icon: <SpeedRoundedIcon color="primary" />,
   },
   {
-    title: "Design tokens",
+    title: "توکن‌های طراحی",
     description:
-      "Shared palette, typography, and shape live in one theme file you can extend.",
+      "پالت، تایپوگرافی و شکل‌ها در یک فایل تم متمرکز و قابل گسترش.",
     icon: <DesignServicesRoundedIcon color="primary" />,
   },
 ] as const;
@@ -62,21 +62,21 @@ export default function HomePage() {
             }}
           />
           <Typography variant="h2" component="h1">
-            Funlife MUI
+            فان‌لایف MUI
           </Typography>
           <Typography
             variant="h6"
             sx={{ color: "rgba(255,255,255,0.78)", fontWeight: 400 }}
           >
-            Material UI admin starter with React Hook Form, React Query, and
-            the Go API on port 8080.
+            استارتر ادمین Material UI با React Hook Form، React Query و API
+            گویی روی پورت ۸۰۸۰.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
               component={Link}
               href="/login"
               variant="contained"
-              endIcon={<ArrowForwardRoundedIcon />}
+              endIcon={<ArrowBackRoundedIcon />}
               size="large"
               sx={{
                 bgcolor: "#FFFFFF",
@@ -84,7 +84,7 @@ export default function HomePage() {
                 "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
               }}
             >
-              Sign in to dashboard
+              ورود به داشبورد
             </Button>
             <Button
               component={Link}
@@ -100,7 +100,7 @@ export default function HomePage() {
                 },
               }}
             >
-              Browse components
+              مشاهده کامپوننت‌ها
             </Button>
           </Stack>
         </Stack>
@@ -121,7 +121,7 @@ export default function HomePage() {
               </CardContent>
               <CardActions sx={{ px: 2, pb: 2 }}>
                 <Button component={Link} href="/components" size="small">
-                  Explore
+                  مشاهده
                 </Button>
               </CardActions>
             </Card>
