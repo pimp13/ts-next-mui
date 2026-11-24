@@ -149,6 +149,7 @@ export function DashboardShell({
         sx={{
           width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
           ml: { md: `${DRAWER_WIDTH}px` },
+          borderBottom: '2px solid', borderColor: 'divider'
         }}
       >
         <Toolbar>
@@ -221,6 +222,6 @@ export function DashboardShell({
         <Toolbar />
         <Box sx={{ p: { xs: 2, md: 3 } }}>{children}</Box>
       </Box>
-    </Box>
+    </Box >
   );
 }
