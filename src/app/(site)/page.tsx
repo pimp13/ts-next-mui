@@ -20,6 +20,7 @@ import { useId, useState } from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import { GridExpandMoreIcon } from "@mui/x-data-grid";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Image from 'next/image';
 
 const features = [
   {
@@ -306,6 +307,22 @@ export default function HomePage() {
 
       <Divider />
 
+      <Box
+        sx={{
+          position: "relative",
+          width: 400,
+          height: 200,
+          borderRadius: 2,
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          src="/cat-landing.webp"
+          alt="Profile"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </Box>
     </Stack>
   );
 }
