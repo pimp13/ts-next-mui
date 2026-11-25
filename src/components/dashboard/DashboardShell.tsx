@@ -27,8 +27,8 @@ import Link from "@/components/Link";
 import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useCurrentUser } from "@/features/auth/hooks/use-auth";
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
-
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import { Tooltip } from "@mui/material";
 
 const DRAWER_WIDTH = 260;
 
@@ -82,7 +82,7 @@ const navItems = [
     href: "/dashboard/test-page",
     label: "صفحه‌ی تستی",
     icon: <TipsAndUpdatesIcon />,
-  }
+  },
 ] as const;
 
 type DashboardShellProps = {
@@ -129,7 +129,9 @@ export function DashboardShell({
               sx={{ borderRadius: 2, mb: 0.5 }}
             >
               <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
+              <Tooltip title={item.label}>
+                <ListItemText primary={item.label} />
+              </Tooltip>
             </ListItemButton>
           );
         })}
@@ -156,7 +158,8 @@ export function DashboardShell({
         sx={{
           width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
           ml: { md: `${DRAWER_WIDTH}px` },
-          borderBottom: '2px solid', borderColor: 'divider'
+          borderBottom: "2px solid",
+          borderColor: "divider",
         }}
       >
         <Toolbar>
@@ -229,6 +232,6 @@ export function DashboardShell({
         <Toolbar />
         <Box sx={{ p: { xs: 2, md: 3 } }}>{children}</Box>
       </Box>
-    </Box >
+    </Box>
   );
 }

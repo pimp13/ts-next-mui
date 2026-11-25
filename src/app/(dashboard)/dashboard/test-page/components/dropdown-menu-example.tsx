@@ -31,6 +31,11 @@ export function DropdownMenuExample() {
     setAnchorEl(null);
   };
 
+  const handleCopy = () => {
+    console.log("Copy is clicked");
+    handleClose();
+  };
+
   return (
     <Box sx={{ p: 3 }}>
       <Button
@@ -60,7 +65,7 @@ export function DropdownMenuExample() {
           </Typography>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleCopy}>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
           </ListItemIcon>
