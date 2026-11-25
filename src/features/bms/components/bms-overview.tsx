@@ -76,9 +76,15 @@ export function BmsOverview() {
                 <Stack spacing={1.25}>
                   <Stack
                     direction="row"
-                    sx={{ justifyContent: "space-between", alignItems: "center" }}
+                    sx={{
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
                   >
-                    <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary" }}
+                    >
                       {card.label}
                     </Typography>
                     {card.icon}
@@ -86,7 +92,10 @@ export function BmsOverview() {
                   <Typography variant="h5" sx={{ fontWeight: 700 }}>
                     {card.value}
                   </Typography>
-                  <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary" }}
+                  >
                     {card.hint}
                   </Typography>
                 </Stack>
