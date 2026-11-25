@@ -94,13 +94,7 @@ const theme = createTheme(
       borderRadius: 12,
     },
     typography: {
-      fontFamily: [
-        "var(--font-vazirmatn)",
-        "Vazirmatn",
-        "Tahoma",
-        "Arial",
-        "sans-serif",
-      ].join(","),
+      fontFamily: ["IranSans", "Tahoma", "Arial", "sans-serif"].join(","),
       h1: { fontWeight: 700, letterSpacing: "-0.03em" },
       h2: { fontWeight: 700, letterSpacing: "-0.02em" },
       h3: { fontWeight: 600, letterSpacing: "-0.02em" },
