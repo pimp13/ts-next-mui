@@ -16,9 +16,9 @@ import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
 import Link from '@mui/material/Link';
 import NextLink from '@/components/Link';
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Alert, Avatar, CardActionArea, CardMedia, Divider, Paper, Rating, Skeleton } from "@mui/material";
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import CheckIcon from '@mui/icons-material/Check';
-import { GridExpandMoreIcon } from "@mui/x-data-grid";
+import { DataGrid, GridExpandMoreIcon } from "@mui/x-data-grid";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
 import { useSnackbar } from "notistack";
@@ -45,6 +45,8 @@ const features = [
   },
 ] as const;
 
+
+
 export default function HomePage() {
   const [value, setValue] = useState<number | null>(2);
   const id = useId();
@@ -52,6 +54,45 @@ export default function HomePage() {
   const fakeAvatarImg = 'https://img.magnific.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid&w=740&q=80';
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const columns = useMemo(() => {
+    return [
+      { field: "name", headerName: "نام", flex: 1, minWidth: 160 },
+      { field: "status", headerName: "وضعیت", flex: 1.2, minWidth: 200 },
+    ]
+  }, []);
+
+  const mockDataForDataGrid = useMemo(() => {
+    return [
+      { name: 'Pouya', status: true },
+      { name: 'Ali0', status: true },
+      { name: 'Ali1', status: true },
+      { name: 'Ali2', status: true },
+      { name: 'Ali3', status: true },
+      { name: 'Ali4', status: true },
+      { name: 'Ali5', status: true },
+      { name: 'Ali6', status: true },
+      { name: 'Ali7', status: true },
+      { name: 'Ali8', status: true },
+      { name: 'Ali9', status: true },
+      { name: 'Ali10', status: true },
+      { name: 'Ali11', status: true },
+      { name: 'Ali12', status: true },
+      { name: 'Ali13', status: true },
+      { name: 'Ali14', status: true },
+      { name: 'Ali15', status: true },
+      { name: 'Ali16', status: true },
+      { name: 'Ali17', status: true },
+      { name: 'Ali18', status: true },
+      { name: 'Ali19', status: true },
+      { name: 'Ali20', status: true },
+      { name: 'Ali21', status: true },
+      { name: 'Ali22', status: true },
+      { name: 'Ali23', status: true },
+      { name: 'Ali24', status: true },
+      { name: 'Ali25', status: true },
+    ]
+  }, [])
 
   return (
     <Stack spacing={5}>
@@ -374,6 +415,24 @@ export default function HomePage() {
           </Grid>
         ))}
       </Grid>
+
+      <Divider />
+
+
+
+      <Box sx={{ height: 600, width: "100%" }}>
+        <DataGrid
+          rows={mockDataForDataGrid}
+          columns={columns}
+          loading={false}
+          getRowId={(row) => row.name}
+          pageSizeOptions={[5, 10, 25, 50, 100]}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 10, page: 0 } },
+          }}
+          disableRowSelectionOnClick
+        />
+      </Box>
 
 
 
