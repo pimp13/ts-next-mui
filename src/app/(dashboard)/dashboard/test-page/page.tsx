@@ -23,6 +23,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { DropdownMenuExample } from "./components/dropdown-menu-example";
 
 const bull = (
   <Box
@@ -169,46 +170,49 @@ export default function TestPage() {
         </Grid>
       </Box>
 
-      <Box>
-        <Paper sx={{ width: 320, maxWidth: "100%" }}>
-          <MenuList>
-            <MenuItem>
-              <ListItemIcon>
-                <ContentCut fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Cut</ListItemText>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                ⌘X
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <ContentCopy fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Copy</ListItemText>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                ⌘C
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <ContentPaste fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Paste</ListItemText>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                ⌘V
-              </Typography>
-            </MenuItem>
-            <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <Cloud fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Web Clipboard</ListItemText>
-            </MenuItem>
-          </MenuList>
-        </Paper>
-      </Box>
+        <Box>
+          <Paper sx={{ width: 320, maxWidth: "100%" }}>
+            <MenuList>
+              <MenuItem>
+                <ListItemIcon>
+                  <ContentCut fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Cut</ListItemText>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  ⌘X
+                </Typography>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <ContentCopy fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Copy</ListItemText>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  ⌘C
+                </Typography>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <ContentPaste fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Paste</ListItemText>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  ⌘V
+                </Typography>
+              </MenuItem>
+              <Divider />
+              <MenuItem>
+                <ListItemIcon>
+                  <Cloud fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Web Clipboard</ListItemText>
+              </MenuItem>
+            </MenuList>
+          </Paper>
+        </Box>
+
+
+        <DropdownMenuExample />
     </Stack>
   );
 }
