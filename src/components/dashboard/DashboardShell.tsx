@@ -27,6 +27,8 @@ import Link from "@/components/Link";
 import { LogoutButton } from "@/components/LogoutButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useCurrentUser } from "@/features/auth/hooks/use-auth";
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+
 
 const DRAWER_WIDTH = 260;
 
@@ -76,6 +78,11 @@ const navItems = [
     label: "اعلان‌ها",
     icon: <CampaignRoundedIcon />,
   },
+  {
+    href: "/dashboard/test-page",
+    label: "صفحه‌ی تستی",
+    icon: <TipsAndUpdatesIcon />,
+  }
 ] as const;
 
 type DashboardShellProps = {

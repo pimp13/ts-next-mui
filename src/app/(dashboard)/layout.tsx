@@ -44,6 +44,10 @@ const pageMeta: Record<string, { title: string; description?: string }> = {
     title: "اعلان‌ها",
     description: "اطلاعیه‌های ساختمان‌محور",
   },
+  "/dashboard/test-page": {
+    title: "صفحه‌ی تستی",
+    description: "صفحه‌ی تستی برای مدیریت mui"
+  }
 };
 
 function DashboardLayoutInner({ children }: { children: ReactNode }) {

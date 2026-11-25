@@ -59,38 +59,39 @@ export default function HomePage() {
     return [
       { field: "name", headerName: "نام", flex: 1, minWidth: 160 },
       { field: "status", headerName: "وضعیت", flex: 1.2, minWidth: 200 },
+      { field: "age", headerName: "سن", flex: 1.2, minWidth: 200 },
     ]
   }, []);
 
   const mockDataForDataGrid = useMemo(() => {
     return [
-      { name: 'Pouya', status: true },
-      { name: 'Ali0', status: true },
-      { name: 'Ali1', status: true },
-      { name: 'Ali2', status: true },
-      { name: 'Ali3', status: true },
-      { name: 'Ali4', status: true },
-      { name: 'Ali5', status: true },
-      { name: 'Ali6', status: true },
-      { name: 'Ali7', status: true },
-      { name: 'Ali8', status: true },
-      { name: 'Ali9', status: true },
-      { name: 'Ali10', status: true },
-      { name: 'Ali11', status: true },
-      { name: 'Ali12', status: true },
-      { name: 'Ali13', status: true },
-      { name: 'Ali14', status: true },
-      { name: 'Ali15', status: true },
-      { name: 'Ali16', status: true },
-      { name: 'Ali17', status: true },
-      { name: 'Ali18', status: true },
-      { name: 'Ali19', status: true },
-      { name: 'Ali20', status: true },
-      { name: 'Ali21', status: true },
-      { name: 'Ali22', status: true },
-      { name: 'Ali23', status: true },
-      { name: 'Ali24', status: true },
-      { name: 'Ali25', status: true },
+      { name: 'Pouya', status: true, age: 19 },
+      { name: 'Ali0', status: true, age: 21 },
+      { name: 'Ali1', status: true, age: 21 },
+      { name: 'Ali2', status: true, age: 21 },
+      { name: 'Ali3', status: true, age: 21 },
+      { name: 'Ali4', status: true, age: 21 },
+      { name: 'Ali5', status: true, age: 21 },
+      { name: 'Ali6', status: true, age: 21 },
+      { name: 'Ali7', status: true, age: 21 },
+      { name: 'Ali8', status: true, age: 21 },
+      { name: 'Ali9', status: true, age: 21 },
+      { name: 'Ali10', status: true, age: 22 },
+      { name: 'Ali11', status: true, age: 22 },
+      { name: 'Ali12', status: true, age: 22 },
+      { name: 'Ali13', status: true, age: 22 },
+      { name: 'Ali14', status: true, age: 22 },
+      { name: 'Ali15', status: true, age: 22 },
+      { name: 'Ali16', status: true, age: 22 },
+      { name: 'Ali17', status: true, age: 22 },
+      { name: 'Ali18', status: true, age: 22 },
+      { name: 'Ali19', status: true, age: 22 },
+      { name: 'Ali20', status: true, age: 22 },
+      { name: 'Ali21', status: true, age: 22 },
+      { name: 'Ali22', status: true, age: 22 },
+      { name: 'Ali23', status: true, age: 22 },
+      { name: 'Ali24', status: true, age: 22 },
+      { name: 'Ali25', status: true, age: 22 },
     ]
   }, [])
 
@@ -272,10 +273,10 @@ export default function HomePage() {
 
       <Stack direction="column" spacing={2}>
         <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-          Here is a gentle confirmation that your action was successful.
+          لورم ایپسوم پرداخت یک قابل مالک مبلغ
         </Alert>
         <Alert icon={<CheckIcon fontSize="inherit" />} severity="error">
-          Here is a gentle confirmation that your action was successful.
+          لورم ایپسوم پرداخت یک قابل مالک مبلغ
         </Alert>
       </Stack>
 
@@ -419,7 +420,6 @@ export default function HomePage() {
       <Divider />
 
 
-
       <Box sx={{ height: 600, width: "100%" }}>
         <DataGrid
           rows={mockDataForDataGrid}
@@ -433,6 +433,25 @@ export default function HomePage() {
           disableRowSelectionOnClick
         />
       </Box>
+
+
+      <Divider />
+
+
+      <Stack>
+        <Stack direction="row" sx={{ alignItems: 'center', gap: 3, mb: 2 }}>
+          <Skeleton variant="circular" animation="wave" width={100} height={100} />
+          <Skeleton variant="text" animation="wave" width={200} height={50} />
+        </Stack>
+        <Skeleton variant="rounded" animation="wave" width={550} height={200} />
+
+      </Stack>
+
+
+      <Divider />
+
+
+
 
 
 
