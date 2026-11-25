@@ -23,8 +23,10 @@ import {
   ListItemIcon,
   ListItemText,
   Tooltip,
+  Skeleton,
 } from "@mui/material";
 import { DropdownMenuExample } from "./components/dropdown-menu-example";
+import { useTest } from "./hooks/use-test";
 
 const bull = (
   <Box
@@ -36,7 +38,10 @@ const bull = (
 );
 
 export default function TestPage() {
+  const { data: articles, isLoading: isLoadingArticles } = useTest();
+
   const testPageTitle = "سلام به دنیا!";
+
   return (
     <Stack spacing={2}>
       <Box>
@@ -62,7 +67,6 @@ export default function TestPage() {
       <Box
         sx={[
           {
-            // Light Mode
             background: createAuroraGradient(
               "rgba(77, 163, 255, 0.18)",
               "rgba(147, 197, 253, 0.25)",
@@ -73,7 +77,6 @@ export default function TestPage() {
           },
           (theme) =>
             theme.applyStyles("dark", {
-              // Dark Mode
               background: createAuroraGradient(
                 "rgba(77, 163, 255, 0.35)",
                 "rgba(11, 107, 203, 0.25)",
@@ -83,34 +86,78 @@ export default function TestPage() {
         ]}
       >
         <Grid container spacing={2}>
-          {Array.from({ length: 3 }).map((_, i) => (
-            <Grid key={i} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
-              <Card>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    sx={{ color: "text.secondary", fontSize: 14 }}
+          {isLoadingArticles
+            ? Array.from({ length: 3 }).map((_, i) => (
+                <Grid
+                  key={`skeleton-${i}`}
+                  size={{ xs: 12, sm: 6, md: 4, lg: 4 }}
+                >
+                  <Card
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
                   >
-                    Word of the Day
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    be{bull}nev{bull}o{bull}lent
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                    adjective
-                  </Typography>
-                  <Typography variant="body2">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small">Learn More</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+                    <CardContent>
+                      <Skeleton variant="rounded" height={200} />
+                      <Skeleton variant="text" width="60%" sx={{ mt: 1 }} />
+                      <Skeleton variant="text" width="90%" />
+                      <Skeleton variant="text" width="40%" />
+                    </CardContent>
+                    <CardActions sx={{ mt: "auto", p: 2 }}>
+                      <Skeleton variant="rectangular" width={100} height={36} />
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))
+            : articles?.map((article) => (
+                <Grid key={article.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
+                  <Card
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography
+                        gutterBottom
+                        sx={{ color: "text.secondary", fontSize: 14 }}
+                      >
+                        {"دسته‌بندی"}
+                      </Typography>
+                      <Typography variant="h5" component="div" sx={{ mb: 1 }}>
+                        {article.title}
+                      </Typography>
+                      <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                        {article.author_name}
+                      </Typography>
+                      <Typography variant="body2" color="text.primary">
+                        {article.excerpt}
+                        {/* {article. && (
+                          <>
+                            <br />
+                            <Typography
+                              component="span"
+                              sx={{
+                                fontStyle: "italic",
+                                mt: 1,
+                                display: "block",
+                              }}
+                            >
+                              "{article.quote}"
+                            </Typography>
+                          </>
+                        )} */}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small">بیشتر بخوانید</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
         </Grid>
       </Box>
 
